@@ -1,0 +1,91 @@
+/* EDITADO MAR-13 */
+
+body { margin: 0; }
+
+.sidebar {
+  display: flex; flex-direction: column;
+  height: 100vh; width: 248px; /* Altura responsiva */
+  padding-top: 15px;
+  
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #6e45ab 0%, #321265 100%);
+  overflow: hidden;
+  
+  transition: width 0.3s ease;
+}
+
+.sidebar.collapsed { width: 60px; }
+
+.toggle-btn img {
+    width: 20px; margin-top: 0; margin-left: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.toggle-btn.rotated img { transform: rotate(180deg); }
+
+.sidebar.collapsed              { width: 80px; transition: width 0.3s ease; }
+.sidebar.collapsed .button-text { display: none; }
+.sidebar.collapsed .logo        { width: 40px; height: auto; }
+
+.toggle-btn {
+  display: flex; margin-bottom: 10px; gap: 5px;
+  align-items: center;
+  
+  background: none;
+  border: none;
+  color: white; font-size: 18px;
+  
+  cursor: pointer;
+}
+
+.logo {
+  height: 41px; width: 66%; /* altura fixa */
+  margin-left: 15%; margin-right: 15%; margin-bottom: 3rem;
+}
+
+.sidebar.collapsed .logo { height: 32px; margin-left: 22%; /* mesma altura do favicon */ }
+
+.sidebar.collapsed .button-text {
+  opacity: 0;              /* fade out do texto */
+  transform: translateX(-10px); /* desliza para a esquerda */
+  pointer-events: none;    /* impede clique no texto invisível */
+}
+
+.nav-buttons                  { gap: 0; }
+.nav-button                   { text-decoration: none; }
+.nav-buttons, .footer-buttons { display: flex; flex-direction: column; }
+
+.footer-buttons               { margin-bottom: 0; } /* já ocupa o espaço final */
+.footer-button                { cursor: pointer;}
+
+/* ESTADO ATIVO (selecionado) */
+.nav-button.active, .footer-button.active                            { background-color: #FFFFFF; }
+.nav-button.active .button-text, .footer-button.active .button-text  { color: #C053C2; }
+
+/* ESTADO HOVER */
+.nav-button:hover, .footer-buttons:hover, .footer-buttons form:hover { background-color: #6c44a9; }
+
+.nav-button, .footer-buttons form {
+  display: flex;
+  height: 45px; width: 100%;
+  padding: 8px 25px;
+
+  align-items: center;
+  box-sizing: border-box;
+  
+  text-decoration: none;
+  background-color: #4C2884;
+  border: none; border-bottom: 2px solid #9067C3;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.button-content { display: flex; align-items: center; height: 24px; width: 100%; gap: 16px; }
+.button-icon    { height: 24px; width: 24px; border-radius: 4px; }
+
+.button-text {
+  color: #FFFFFF; font-size: 15px; font-weight: 400; line-height: 15px; letter-spacing: 0.2px;
+  white-space: nowrap; /* impede quebra de linha */
+  transition: color 0.2s ease, opacity 0.2s ease, transform 0.3s ease;
+}

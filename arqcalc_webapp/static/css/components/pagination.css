@@ -1,0 +1,70 @@
+/* EDITADA MAR-13 */
+
+.pagination   { display: flex; padding: 0 10px; font-size: 14px; }
+.page_numbers { display: flex; gap: 10px; align-items: center;   }
+
+.btn_pag {
+	padding: 5px 10px;
+	border-radius: 5px;
+	color: var(--text-very-light); font-size: 1rem; font-weight: 600;
+	text-decoration: none;
+}
+
+.arrow_nav {
+	display: flex; align-items: center; justify-content: center;
+	font-size: 1rem; font-weight: 700;
+}
+
+.icon_arrow_right { transform: rotate(180deg); }
+
+.page_numbers .active                         { background-color: var(--primary-color); color: var(--primary-light); }
+.page_numbers a.active, .page_numbers a:hover { background-color: var(--primary-light); color: var(--primary-color); }
+
+.go_to_page {
+	display: flex; align-items: center;
+	gap: 10px;
+	color: var(--text-very-light);
+}
+/* reaproveita o layout atual */
+.go_to_page .custom_select { position: relative; }
+
+/* botão principal (equivale ao select) */
+.go_to_page .custom_selected {
+	height: 25px; width: 58px; min-width: 60px;	
+	background-color: var(--white);
+	border: 2px solid var(--border-color); border-radius: 4px;
+
+	color: var(--text-very-light); font-size: 1rem; font-weight: 600;
+	text-align: center;
+	cursor: pointer;
+}
+
+/* dropdown */
+.go_to_page .custom_options {
+	display: none;
+	max-height: 160px; width: 100%;
+	margin: 0; padding: 4px 0;
+
+	position: absolute; top: -10.5rem; left: 0;
+
+	background-color: var(--white);
+	text-align: center;
+	overflow-y: auto;
+
+	border: 1px solid var(--border-color); border-radius: 5px;
+	list-style: none;
+	z-index: 100;
+}
+
+/* opções */
+.go_to_page .custom_options li {
+	padding: 5px 10px;
+	color: var(--text-very-light); font-weight: 600;
+	cursor: pointer;
+}
+
+/* hover e ativo — alinhado com .page-numbers */
+.go_to_page .custom_options li:hover, .go_to_page .custom_options li.active {
+	background-color: var(--primary-light);
+	color: var(--primary-color);
+}

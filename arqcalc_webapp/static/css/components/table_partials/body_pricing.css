@@ -1,0 +1,49 @@
+/* EDITADO MAR-27 */
+
+.row_body_costs {
+	display: flex;
+    margin-bottom: 3px;
+    gap: 3px;
+	width: 100%;
+
+	align-items: center; justify-content: space-between;
+	flex: 1;
+	white-space: nowrap;
+}
+
+.row_body_costs                      { border-bottom: 1px solid var(--gray-light); }
+.row_body_costs:nth-last-child(-n+2) { border-bottom: none; }
+
+.row_body_costs th {
+    display: flex;
+    flex: 1;
+	font-weight: 400;
+	padding: 0.5rem 1rem;
+}
+
+.row_body_costs:nth-last-child(1) th                  { background-color: var(--gray-light);    }
+.row_body_costs:nth-last-child(1) th:nth-last-child(1){ background-color: var(--primary-light); }
+
+
+/* table venda */
+.row_body_pricing:nth-last-child(-n+3) { border-bottom: none; }
+.row_body_pricing:nth-last-child(2) th { background-color: var(--primary-light); }
+.row_body_pricing:nth-last-child(2) th:nth-last-child(2){
+	color: var(--tabs-border-color);
+    font-weight: 600;
+    background-color: var(--gray-light); 
+}
+.row_body_pricing:nth-last-child(1) th:nth-last-child(2){
+    color: var(--tabs-border-color);
+    font-weight: 600;
+}
+
+.collumn_body_costs {
+	display: flex;
+	padding: .5rem 1rem;
+	height:  2rem;
+	align-items: center;
+	text-align:  start;
+	text-wrap:   wrap;
+	flex: 1;
+}

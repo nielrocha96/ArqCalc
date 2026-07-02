@@ -1,0 +1,77 @@
+<!-- @format -->
+
+<!-- # EDITADO - ABRIL/10
+-->
+{% extends 'base_geral.html' %} {% load static %} {% load config_table %} {% get_table_vars as cfg_table %} {% block links_css %}
+<link
+	rel="stylesheet"
+	href="{% static 'css/configuracoes.css' %}?v=1" />
+{% endblock %} {% block banner %} {% include 'components/topbar.html' with title='Configurações' %}
+
+<form
+	class="configuracoes_form"
+	method="post"
+	action="{% url 'configuracoes' %}">
+	{% csrf_token %}
+
+	<div class="tabs_bar">
+		<div
+			class="tab tab_config active"
+			data-tab="perfil">
+			Perfil
+		</div>
+		<div
+			class="tab tab_config"
+			data-tab="moeda">
+			Moeda
+		</div>
+	</div>
+
+	<div class="tabs_content">
+		<div
+			id="perfil"
+			class="tab-content active">
+			<div class="profile_grid">
+				<div class="full_width">
+					{% include 'components/form_fields/inputs.html' with title='Escolher imagem' input_type='file' id_input='input_photo' name_input='foto' value_input='' class_aditinal='input_file_custom' %}
+					<span id="file_name">Nenhuma imagem selecionada</span>
+				</div>
+
+				{% include 'components/form_fields/inputs.html' with title='Nome' input_type='text' id_input='nome' name_input='nome' value_input=user_data.nome %} 
+
+				{% include 'components/form_fields/inputs.html' with title='E-mail' input_type='email' id_input='email' name_input='email' disabled=True value_input=user_data.email %} 
+				
+				{% include 'components/form_fields/inputs.html' with title='CEP' input_type='text' id_input='cep' name_input='cep' value_input=user_data.cep %} 
+
+				{% include 'components/form_fields/inputs.html' with title='Cidade' input_type='text' id_input='cidade' name_input='cidade' value_input=user_data.cidade %} 
+				
+				{% include 'components/form_fields/inputs.html' with title='Estado' input_type='text' id_input='estado' name_input='estado' value_input=user_data.estado %} 
+
+				{% include 'components/form_fields/inputs.html' with title='País' input_type='text' id_input='pais' name_input='pais' value_input=user_data.pais %}
+
+			</div>
+			<div class="align_right">
+				{% include 'components/buttons/btn_secondary.html' with button_type='submit' button_id='save_data_btn' btn_class='btn_primary_dark btn_save' title='Salvar Alterações' %}
+			</div>
+		</div>
+
+		<div
+			id="moeda"
+			class="tab-content">
+			<div class="form-group">
+				{% include 'components/form_fields/select_base.html' with list_config=cfg_table.lists.content.moeda list_content=type_coin name_input='moeda_selecionada' id_input='moeda_selecionada' value_input='' title='Selecione a moeda' label='Moeda' arrow_drop_down='true' %}
+			</div>
+		</div>
+	</div>
+
+	<div
+		class="modal_confirmation_container"
+		id="modal_confirmation_container">
+		{% include 'components/modals/modal_confirmation.html' %}
+	</div>
+</form>
+{% endblock %} {% block extra_js %}
+<script
+	src="{% static 'js/configuracoes.js' %}"
+	type="module"></script>
+{% endblock %}

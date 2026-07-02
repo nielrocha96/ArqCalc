@@ -1,0 +1,16 @@
+/* EDITADO MAR-13 */
+
+.btn_hover{
+    height: 28px;
+    width: 28px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 2px;
+    transition: .2s;
+
+    &:hover{
+        background-color: var(--btn-primary);
+    }
+}

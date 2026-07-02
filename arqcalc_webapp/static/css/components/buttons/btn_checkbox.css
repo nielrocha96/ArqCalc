@@ -1,0 +1,38 @@
+/* EDITADO MAR-13 */
+
+/* CRIA UM CHECKBOX CUSTOMIZADO EM CIMA DO PADRÃO */
+.checkbox {
+	display: flex;
+	position: relative;
+	width: 20px; height: 20px;
+	align-items: center;
+	cursor: pointer;
+}
+
+.checkbox input { display: none; }
+
+.checkmark {
+	position: relative;
+	width: 20px; height: 20px;
+	border: 2px solid var(--text-header); border-radius: 4px;
+}
+.checkbox img {
+	position: absolute; left: 0; top: 0;
+	width: 20px; height: 20px;
+	opacity: 0;
+	transform: scale(0.5);
+	transition: 0.2s ease;
+}
+
+/* PARA QUANDO MARCADO */
+.checkbox input:checked + .checkmark {
+	background: var(--btn-primary);
+	width: 20px; height: 20px;
+	border: none;
+}
+.checkbox input:checked ~ img {
+	opacity: 1;
+	transform: scale(1);
+	left: -2px; top: -2px;
+	width: 25px; height: 25px;
+}

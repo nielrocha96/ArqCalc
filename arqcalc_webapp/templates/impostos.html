@@ -1,0 +1,51 @@
+<!--EDITADO MAR-23-->
+{% extends 'base_geral.html' %}
+{% load static %} 
+{% block title %}Impostos - ArqCalc{% endblock %}
+
+{% block links_css %}
+<link rel="stylesheet" href="{% static 'css/impostos.css' %}?v=1" />
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block banner %}
+	<!--  ADICIONA TOPBAR NA TELA -->
+	{% include 'components/topbar.html' with title='Impostos' %}
+	{% if banner == 'True' %}
+		{% include 'components/banner/banner.html' %}
+	{% endif %}
+
+	<div class="actions-bar">
+		<!--  ADICIONA CAMPO DE BUSCA NA TELA -->
+		{% include 'components/search_field.html' with title='Pesquisar Impostos'%}
+
+		<div class="actions-buttons">
+			<!--  ADICIONA BOTÕES FILTRO E NOVO PROJETO NA TELA -->
+			{% include 'components/buttons/btn_primary.html' with  title='Filtrar' image='assets/icons/filter.png' class_aditional="btn_filter" %} 
+
+			{% include 'components/buttons/btn_primary.html' with title='Novo Imposto' image='assets/icons/add.png' class_aditional="btn_add_imposto" %}
+		</div>
+	</div>
+	<div class="container_table_dashboard" id="container_table_dashboard">
+		<div id="table-container" class="container_middle">
+            {% include 'components/table.html' with headers=table_header data_table=table_data %}
+        </div>
+
+	</div>
+
+	<div class="modal_confirmation_container" id="modal_confirmation_container">
+		{% include 'components/modals/modal_confirmation.html' %}	
+	</div>
+
+	<div class="modal_new_costs_container" id="modal_new_costs_container">
+		{% include 'components/modals/modal_new_costs.html' with modal_title='' form_method='post' btn_submit_text='Salvar' class_aditional="modal_main" %}
+	</div>
+{% endblock %}
+
+{% block extra_js %}
+
+	<script src="{% static 'js/impostos.js' %}" type="module"></script>
+
+	
+{% endblock %}

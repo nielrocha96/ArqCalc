@@ -1,0 +1,19 @@
+
+<!-- EDITADO MAR-23 -->
+
+{% load  static %}
+
+{% if is_link == 'true' %}
+<a href="{% url 'novo_projeto' %}" class="ancor_decoration">
+	<button type="button" class="btn_primary">
+		<img src="{% static 'assets/icons/add.png' %}" class="icon_btn_primary" alt="filter">
+		{{ title }}
+	</button>
+</a>
+
+{% else %}
+	<button type="button" class="btn_primary {{class_aditional}}" >
+		<img src="{% static image %}" class="icon_btn_primary" alt="add">
+		{{ title }}
+	</button>
+{% endif %}

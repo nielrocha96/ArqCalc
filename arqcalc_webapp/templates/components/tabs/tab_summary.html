@@ -1,0 +1,20 @@
+<!-- EDITADO MAR-13 -->
+{% load static %}
+{% load config_table %}
+<!-- PUXA AS CONFIGURAÇÕES DE HEAD DE TEMPLATETAGS  -->
+<!-- ATRIBUIR CLASSES E ATIVAÇÃO DE BOTÕES -->
+{% get_table_vars as cfg_table %} 
+
+<div class="tab-content"  id="tab-resumo">
+    <div class="resumo-container">
+        <section class="resumo-secao" id="resumo-custos-profissionais">
+            <h4 class="secao-titulo">Resumo de Custo por Profissional</h4>            
+             {% include 'components/table.html' with headers=tab_config.resumo.headers data_table=resumo isTab='true' table_cfg=cfg_table.resumo class_aditional='backgroud_resumo' %} 
+        </section>
+
+        <section class="resumo-secao" id="resumo-custos-etapas">
+            <h4 class="secao-titulo">Resumo de Custo por Etapa</h4>
+            {% include 'components/table.html' with headers=tab_config.resumo.headers data_table=resumo isTab='true' table_cfg=cfg_table.resumo class_aditional='backgroud_resumo' %}
+        </section>
+    </div>
+</div>

@@ -1,0 +1,258 @@
+{% extends 'base_geral.html' %}
+{% load static %}
+{% load humanize %}
+{% block links_css %}
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}
+{% block banner %} 
+<div class="dashboard-container">
+  <div class="stats-container">
+    <div class="stat-card" style="background-color: #5ec3f1;">
+      <img src="{% static 'assets/icons/business_center.png' %}" alt="Ícone">
+      <div class="stat-content">
+        <span class="stat-value">{{ totalsIndicators.project_count }}</span>
+        <span class="stat-label">Projetos Realizados</span>
+      </div>
+    </div>
+
+    <div class="stat-card" style="background-color: #ff964e;">
+      <img src="{% static 'assets/icons/content_paste_go.png' %}" alt="Ícone">
+      <div class="stat-content">
+        <span class="stat-value">{{ totalsIndicators.project_opened_value|intcomma }}</span>
+        <span class="stat-label">Projetos em Andamentos</span>
+      </div>
+    </div>
+
+    <div class="stat-card" style="background-color: #b1d05a;">
+      <img src="{% static 'assets/icons/beenhere.png' %}" alt="Ícone">
+      <div class="stat-content">
+        <span class="stat-value">{{ totalsIndicators.project_approved_value|intcomma }}</span>
+        <span class="stat-label">Projetos Aprovados</span>
+      </div>
+    </div>
+
+    <div class="stat-card" style="background-color: #ffc82f;">
+      <img src="{% static 'assets/icons/request_quote.png' %}" alt="Ícone">
+      <div class="stat-content">
+        <span class="stat-value">R$ {{ totalsIndicators.project_value|floatformat:2 }}</span>
+        <span class="stat-label">Valor dos Projetos</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="charts-grid">
+    <!-- Gráfico de Aprovação -->
+    <div class="chart-card">
+      <h4>Projetos Aprovados <small>Últimos 12 meses</small></h4>
+      <div class="canvas-wrapper">
+          <canvas id="barChartApproval"></canvas>
+      </div>
+      <div class="big-numbers-container">
+        <div class="big-number">
+          <span class="big-number-value">{{ projectIndicators.percentProjectsApproved }}%</span>
+          <span class="big-number-label">de Aprovados</span>
+        </div>
+        <div class="big-number">
+          <span class="big-number-value">R$ {{ projectIndicators.averageProjectsBillingByMonth|floatformat:2 }}</span>
+          <span class="big-number-label">Média de Faturamento</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pizza: Projetos por Tipo -->
+    <div class="chart-card">
+      <h4>Projetos por Tipo</h4>
+      <div class="canvas-wrapper">
+        <canvas id="pieChartType"></canvas>
+      </div>
+    </div>
+
+    <!-- Pizza: Projetos por Classificação -->
+    <div class="chart-card">
+      <h4>Projetos por Classificação</h4>
+      <div class="canvas-wrapper">
+        <canvas id="pieChartClass"></canvas>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h4>Média dos Últimos 10 Projetos</h4>
+
+      <div class="media-row">
+        <div class="media-info-left">
+          <div class="media-group">
+            <span class="media-label">Preço por projeto aprovado</span>
+            <span class="media-value">R$ {{ projectIndicators.priceByApprovedProject.average|floatformat:2 }}</span>
+          </div>
+          <div class="media-group">
+            <span class="media-label">Preço por projeto reprovado</span>
+            <span class="media-value">R$ {{ projectIndicators.priceByRejectedProject|floatformat:2 }}</span>
+          </div>
+        </div>
+
+        <div class="media-chart-right">
+          <div class="media-group">
+            <span class="media-label">Custo por Hora por Projeto</span>
+            <span class="media-value">R$ {{ projectIndicators.costByHourByProject|floatformat:2 }}</span>
+          </div>
+          <div class="media-group chart-wrapper">
+            <span class="media-label">Histórico de Preços</span>
+            <canvas id="barApprovedPrice"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <hr class="media-divider">
+
+      <div class="media-row">
+        <div class="media-info-left">
+          <div class="media-group">
+              <span class="media-label">Preço por m² por projeto aprovado</span>
+              <span class="media-value">R$ {{ projectIndicators.workCostBySize.average|floatformat:2 }}</span>
+          </div>
+          <div class="media-group">
+              <span class="media-label">Preço por m² por projeto reprovado</span>
+              <span class="media-value">R$ {{ projectIndicators.priceBySizeRejected|floatformat:2 }}</span>
+          </div>
+        </div>
+        <div class="media-chart-right">
+          <div class="media-group">
+              <span class="media-label">Tempo Alocado por m²</span>
+              <span class="media-value">{{ projectIndicators.timeBySize }}h/m²</span>
+          </div>
+          <div class="media-group chart-wrapper">
+              <span class="media-label">Histórico de Custos</span>
+              <canvas id="barWorkCostSize"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const commonOptions = {
+        responsive: true,
+        maintainAspectRatio: false, // ESSENCIAL para respeitar o tamanho do card
+        plugins: { legend: { position: 'right', align: 'start',   // Alinha os itens ao centro verticalmente
+        labels: {
+          boxWidth: 15,    // Tamanho do quadradinho de cor
+          padding: 20,     // Espaçamento entre os itens da legenda
+          color: '#33334C',// Cor do texto
+          }}},
+         layout: {padding:25}
+    };
+
+    // Configuração do Gráfico de Barras (Aprovação)
+    const approvalCtx = document.getElementById('barChartApproval');
+    new Chart(approvalCtx, {
+      type: 'bar',
+      data: {
+        labels: {{ projectApprovalHistory.labels|safe }}, 
+        datasets: [{
+          label: 'Projetos Aprovados',
+          data: {{ projectApprovalHistory.data|safe }}, 
+          backgroundColor: '#AA84DA', // Cor das barras alterada para o roxo desejado
+        }]
+      },
+      options: { 
+        responsive: true, 
+        maintainAspectRatio: false, 
+        plugins: { legend: { display: false } },
+        scales:  { 
+          y: { 
+            beginAtZero: true, // Garante que o gráfico comece do zero
+            border: {
+              display: true,
+              color: '#33334C', // Cor da linha do eixo (mesma do seu texto)
+            },
+            ticks: {
+              stepSize: 1, // Força a escala a pular de 1 em 1 (evita decimais)
+              // Esta função formata os números do eixo Y -> Se o valor for menor que 10, adiciona o "0" na frente
+              callback: function(value) {
+                if (value === 0) return '';                         // Se o valor for 0, retorna vazio (esconde o '00')
+                else { return value < 10 ? '0' + value : value; }   // Caso Geral: formata com zero à esquerda
+              }
+            },
+            grid: {
+              display: true,
+              color: 'rgba(0, 0, 0, 0.1)' // Linhas horizontais de fundo bem suaves
+            }
+          },
+          x: {
+            border: {
+              display: true,
+              color: '#33334C', // Cor da linha do eixo X
+            },
+            grid: { display: false } // Remove as linhas verticais para um look mais limpo
+        }}}
+    });
+
+    // Gráfico de Pizza (Tipo de Projeto)
+    const pieTypeCtx = document.getElementById('pieChartType');
+    new Chart(pieTypeCtx, {
+      type: 'doughnut', // Transforma em gráfico de rosquinha
+      data: {
+        labels: {{ projectTypeChart.labels|safe }},
+        datasets: [{
+          data: {{ projectTypeChart.data|safe }},
+          borderWidth: 0,      // Remove a borda branca entre as fatias
+          hoverBorderWidth: 0, // Garante que não apareça borda ao passar o mouse
+          spacing: 0           // Garante que não haja folga entre os arcos
+        }]
+      },
+      options: {...commonOptions, cutout: '60%'},
+    });
+
+    // Gráfico de Pizza (Classificação) - Lógica idêntica ao anterior
+    const pieClassCtx = document.getElementById('pieChartClass');
+    new Chart(pieClassCtx, {
+      type: 'pie',
+      data: {
+        labels: {{ projectClassificationChart.labels|safe }},
+        datasets: [{
+          data: {{ projectClassificationChart.data|safe }},
+          borderWidth: 0,      // Remove a borda branca entre as fatias
+          hoverBorderWidth: 0, // Garante que não apareça borda ao passar o mouse
+          spacing: 0           // Garante que não haja folga entre os arcos
+        }]
+      },
+      options: commonOptions
+    });
+
+    // Mini Gráfico de Barras (Preço Médio)
+    const barApprovedPriceCtx = document.getElementById('barApprovedPrice');
+    new Chart(barApprovedPriceCtx, {
+      type: 'bar',
+      data: {
+        labels: {{ projectIndicators.priceByApprovedProject.labels|safe }},
+        datasets: [{
+          label: 'Preço Aprovado',
+          data: {{ projectIndicators.priceByApprovedProject.data|safe }},
+          backgroundColor: '#29B6F6'
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+    });
+
+    // Mini Gráfico de Barras (Custo Médio)
+    const barWorkCostSizeCtx = document.getElementById('barWorkCostSize');
+    new Chart(barWorkCostSizeCtx, {
+      type: 'bar',
+      data: {
+        labels: {{ projectIndicators.workCostBySize.labels|safe }},
+        datasets: [{
+          label: 'Custo por Hora',
+          data: {{ projectIndicators.workCostBySize.data|safe }},
+          backgroundColor: '#AB47BC'
+        }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+    });
+  </script>
+{% endblock %}

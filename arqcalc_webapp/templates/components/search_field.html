@@ -1,0 +1,13 @@
+<!-- EDITADO MAR-13 -->
+{% load static %}
+
+<div class="search-bar"
+	id="id_search"
+	hx-get="{% url request.resolver_match.url_name %}"
+	hx-target="#table-container"
+	hx-include="input"
+	hx-trigger="change, keyup delay:600ms from:input"
+>
+	<input type="text" placeholder="{{ title }}" name="search" />
+	<img src="{% static 'assets/icons/search.png' %}" alt="Pesquisar" class="search-icon" />
+</div>

@@ -1,0 +1,51 @@
+/**
+ * EDITADO MAR-13
+ *
+ * @format
+ */
+
+.ancor_decoration {
+	text-decoration: none;
+}
+
+.btn_primary,
+.btn_primary_dark {
+	display: flex;
+	margin-left: 1rem;
+	padding: 0.5rem 1rem 0.5rem 0.8rem;
+
+	justify-content: space-around;
+	align-items: center;
+	text-align: center;
+	font-size: 1.12rem;
+	font-weight: 400;
+
+	border: none;
+	border-radius: 4px;
+	height: 2.25rem;
+	min-width: 6.75rem;
+	cursor: pointer;
+}
+
+.btn_primary {
+	background-color: var(--btn-primary);
+	color: var(--text-header);
+}
+.btn_primary_dark {
+	background-color: var(--text-header);
+	color: var(--btn-primary);
+}
+
+.btn_primary:hover,
+.btn_primary_dark:hover {
+	background-color: var(--primary-color);
+	transition: 0.3s;
+}
+.btn_primary:hover {
+	color: var(--btn-primary);
+}
+
+.icon_btn_primary {
+	margin-right: 8px;
+}
+

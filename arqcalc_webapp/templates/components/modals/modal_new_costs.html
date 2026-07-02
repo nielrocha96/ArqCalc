@@ -1,0 +1,37 @@
+<!-- @format -->
+<!-- # EDITADO - ABRIL/2 -->
+
+{% load static %}
+
+<div class="modal_new_costs {{ class_aditional }}">
+	<div>
+		<button
+			type="button"
+			class="btn_close_modal_new_costs">
+			X
+		</button>
+	</div>
+	<div class="container_new_costs">
+		<h2></h2>
+		<form id="form_costs">
+        {% csrf_token %}
+        <input type="hidden" name="item_id" id="modal_item_id" value="">
+        
+        <div class="form_group">
+            <div class="input_group">
+                <label for="description">Descrição</label>
+                <input type="text" name="description" id="modal_description" required />
+            </div>
+            <div class="input_group">
+                <label for="value">Valor</label>
+                <input type="number" name="value" id="modal_value" step="0.01" required />
+            </div>
+        </div>
+        <div class="container_btn_add_costs">
+            <button type="submit" class="btn_add_costs btn_primary">
+                {{ btn_submit_text }}
+            </button>
+        </div>
+</form>
+	</div>
+</div>

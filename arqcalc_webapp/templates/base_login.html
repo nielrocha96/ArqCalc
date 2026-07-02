@@ -1,0 +1,53 @@
+<!-- EDITADO MAR-13 -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Login - ArqCalc{% endblock %}</title>
+  <link rel="icon" href="{% static 'assets/favicon.ico' %}" type="image/icon">
+
+  <!-- Link para o arquivo CSS -->
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<body>
+     <style>
+      body{background: url("{% static 'assets/img/bg_test2.jpg' %}") no-repeat center center;
+           background-size: cover;
+          }
+    </style>
+    <div class="login-container">
+        <!-- Lado esquerdo: Formulário -->
+        <div class="login-form-wrapper">
+            <img src="{% static 'assets/logo-arqcalc.png' %}" alt="ArqCalc Logo" class="logo" />
+            <div class="login-form">
+                {% block login_header %}
+                {% endblock %}
+            </div>
+        </div>
+        
+        <!-- Lado direito: Banner -->
+        <div class="login-banner">
+            <h2>Conheça uma forma simples de fazer orçamentos</h2>
+            <div class="images">
+                <img src="{% static 'assets/img/login/image1.jpeg' %}" alt="Orçamento 1" />
+                <img src="{% static 'assets/img/login/image2.jpeg' %}" alt="Orçamento 2" />
+            </div>
+            <p>Tenha mais tempo para seus clientes</p>
+        </div>
+    </div>    
+
+<script>
+    document.querySelectorAll('.toggle-password').forEach(icon => {
+         icon.addEventListener('click', () => {
+            const input      = icon.previousElementSibling; // assumindo que o input vem antes do ícone
+            const isPassword = input.type === 'password';
+            input.type       = isPassword ? 'text' : 'password';
+            icon.src         = isPassword ? "{% static 'assets/hide.png' %}" : "{% static 'assets/view.png' %}";
+        });
+    });
+</script>
+</body>

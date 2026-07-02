@@ -1,0 +1,159 @@
+/* EDITADO ABRIL/11 */
+
+#status {
+	height: 40px; width: 100%;
+	padding: 10px;
+	border: 1px solid var(--border-color); border-radius: 6px;
+	
+	background-color: var(--white);
+	background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%23888888" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	background-size: 20px;
+
+	cursor: pointer;
+	color: var(--text-color); font-size: 15px;
+
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+
+.action-icons { width: 1rem; text-align: center; }
+
+.action-icons i {
+	margin: 0 8px;
+	width: 1rem;
+	color: var(--text-light);
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+/* .action-icons i:hover { color: var(--text-light); } */
+
+/* --- Formulário Novo Projeto --- */
+.novo_projeto_form {
+	max-width: 96%;
+	margin: 4rem 0;
+	background: var(--white);
+}
+
+.novo_projeto_form h2 { margin-bottom: 24px 40px; color: var(--primary-color); }
+
+.tabs_bar {
+	display: flex; 
+	justify-content: space-between;
+	margin-bottom: 20px;
+	border-bottom: 2px solid var(--tabs-border-color);
+}
+
+
+
+.tabs_bar .tab {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+	padding: 8px 28px 8px 8px;
+	min-width: 100px;
+	background: transparent;
+	border-bottom: 2px solid transparent;
+	color: var(--text-header); font-weight: 500;
+	cursor: pointer;
+	transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+/* 
+.tabs_bar .tab:not(:last-child) { margin-right: 24px; } */
+
+.tabs_bar .tab.active {
+	background: var(--tabs-selected-bg);
+	color: var(--tabs-border-color);
+	border-bottom: 2px solid var(--tabs-selected-color);
+}
+
+/* TAB DADOS */
+.form-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.7rem 3rem;
+	margin-bottom: 2rem;
+}
+
+.align_right{
+	display: flex;
+	justify-content: flex-end;
+}
+
+.container_form_group { display: flex; gap: 0.7rem 3rem; }
+
+.form-group {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	max-width: 12rem;
+}
+
+.input_label {
+	width: 12rem;
+	margin-bottom: 4px;
+	color: var(--text-header); font-size: 1rem; 
+	font-weight: 600;
+}
+.form_input {
+	width: 12rem;
+	padding: 10px;
+	border: 1px solid var(--border-color); border-radius: 4px;
+	font-size: .75rem;
+}
+
+
+.form-actions { margin-top: 32px; text-align: right; }
+
+.tab-content        { display: none;  }
+.tab-content.active { display: block; }
+
+/* --- INÍCIO: ESTILOS PARA A ABA ETAPAS E AJUSTES GERAIS --- */
+/* Ajuste nas colunas dos itens de profissional */
+.profissional-item {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 110px; /* Ajuste para alinhar com o header */
+	align-items: center;
+	gap: 1rem;
+	padding: 0.75rem 1rem;
+	background-color: var(--primary-light);
+	border-radius: 8px;
+}
+.profissional-item .item-col-4 {
+	display: flex;
+	gap: 8px;
+}
+.profissionais-header {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 110px; /* Ajuste para alinhar com os itens */
+	align-items: center;
+	padding: 0 1rem;
+	gap: 1rem;
+}
+
+/* --- ABA ETAPAS --- */
+.etapas-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+/* --- INÍCIO: ESTILOS PARA A ABA RESUMO DO PROJETO --- */
+.resumo-container {
+	padding-top: 2rem;
+} /* Espaço após a barra de abas */
+.resumo-secao {
+	margin-bottom: 3rem;
+} /* Espaço entre as duas tabelas */
+
+.secao-titulo {
+	font-size: 1.25rem;
+	font-weight: 600;
+	color: var(--text-dark);
+	margin-bottom: 1rem;
+	padding-bottom: 0.5rem;
+}

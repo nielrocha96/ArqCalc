@@ -1,0 +1,45 @@
+<!-- EDITADO - ABRIL/5 -->
+{% load static %}
+
+<div class="form-group">
+    {% if label %}
+    <label class="input_label">{{ label }}</label>
+    {% endif %}
+
+    <div class="select_item_base select_checkbox_container" id="{{ id_input }}_container">
+        <button 
+            type="button" 
+            class="selected_item_base btn_select_checkbox {% if edit == 'true' %}disabled{% endif %}"
+            {% if edit == 'true' %}
+            disabled
+            title="Não é possível editar este campo."
+            {% else %}
+            {% endif %}
+            >
+            <span class="selected_text">{{ title|default:"Selecionar itens" }}</span>
+            <img src="{% static 'assets/icons/arrow_drop_down.png' %}" alt="arrow" class="arrow_icon">
+        </button>
+
+        <ul class="custom_options_base select_list" style="display: none;">
+            {% for item in items_list %}
+            <li class="select_item_checkbox">
+                <label class="checkbox">
+                    <input type="checkbox" 
+                        id="item_{{ id_input }}_{{ item.id }}" 
+                        value="{{ id_input }}-{{ item.id }}" 
+                        data-label="{{ item.description }}" 
+                        data-price="{{ item.value|stringformat:'.2f' }}"
+                        class="row_checkbox"
+                         {% if edit == 'true' %}checked{% endif %}
+                        />               
+                    <img src="{% static 'assets/icons/correct.png' %}" alt="check" />
+                    <span class="checkmark"></span>
+                </label>
+                <input class="input_table_disabled" value="{{ item.description }}" readonly>
+            </li>
+            {% endfor %}
+        </ul>
+
+        <input type="hidden" name="{{ name_input }}" id="{{ id_input }}" value="">
+    </div>
+</div>

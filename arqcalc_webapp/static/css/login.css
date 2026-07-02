@@ -1,0 +1,225 @@
+/* # EDITADO - ABRIL/2 */
+
+html, body { 
+    /*height: 100%; */
+    font-family: "Segoe UI", sans-serif;
+    margin: 0; }
+
+.login-container {
+    display: grid;
+    grid-template-columns: minmax(400px, 1fr) 1fr; /* lado esquerdo tem no mínimo 400px */
+    min-height: 100vh; /* ocupa toda a altura da tela */
+}
+
+/* Lado esquerdo: Formulário */
+.login-form-wrapper { display: flex; flex-direction: column; }
+
+.logo { margin-bottom: 3rem; width: 175px; margin-top: 2%; margin-left: 5%; }
+
+.login-form {
+    flex-grow: 1; /* ocupa o espaço acima do rodapé */
+    justify-items: center;
+}
+
+.login-form h1 {
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 120%;
+    color: #39186D;
+    margin-bottom: 0.3rem;
+}
+
+.login-form p {
+    margin-top: 0;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #5b5b65;
+}
+
+form {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    width: 50%;
+}
+
+form label {
+    font-family: 'Segoe UI';
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 2rem;
+    letter-spacing: 0.4px;
+    color: #000;
+}
+
+form input {
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    line-height: 150%;
+    width: 100%;
+    padding: 0.6rem;
+}
+#email{width: auto;}
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container img {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    height: 1.4rem;
+}
+
+.buttons {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.forgot-password {
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    justify-self: start; /* no contexto de grid, força alinhar só no início */
+    display: inline; /* garante que só ocupe o espaço do texto */
+    color:#6E45AB;
+}
+
+.buttons button { 
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(-90deg, #310273, #38ABF2) ;
+    color: #fff;
+    border-radius: 4px;
+    border: 0;
+    padding: 0.8rem;
+    box-shadow: rgba(0,0,0, 0.5) -1px 1px 4px;
+}
+
+.buttons p {
+    font-weight: 400;
+    font-size: 16px;
+    margin-top: 5px;
+    justify-self: center;
+}
+
+.buttons p a {
+    color: #6E45AB;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.support{
+    margin-top: 2rem;
+    justify-items: center;
+    line-height: 1;
+}
+
+.support p{
+    font-weight: 500;
+    font-size: 1rem;
+    color: #583e80;
+    display: flex;
+    align-items: center; /* Alinha verticalmente */
+    gap: 6px; /* Espaço entre imagem e texto */
+}
+.support p:hover{text-decoration: underline; cursor: pointer;}
+
+.support img {
+    width: 20px; /* Ajusta o tamanho do ícone */
+    height: auto;
+    margin-top: 2px;
+}
+.login-footer {
+    font-weight: 500;
+    justify-items: center;
+    line-height: 22px;
+    font-size: 1rem;
+    color: #828290;
+}
+
+.login-footer a {
+    color: #6E45AB;
+    text-decoration: none;
+}
+
+.footer-link:hover, .forgot-password:hover, .buttons a:hover { color: #8e2de2; text-decoration: underline; }
+
+/* Lado Direito: Banner */
+.login-banner {
+  flex: 1;
+  background: linear-gradient(180.74deg, rgba(177, 149, 210, 0.1) -6.85%, rgba(111, 80, 150, 0) 22.05%, rgba(111, 80, 150, 0.4) 53.55%, #231930 118.21%);
+  color: #54146f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.login-banner h2 {
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.images {
+  display: flex;
+  gap: 1rem;
+}
+
+.images img {
+    max-width: 45%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.login-banner p {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 31.92px;
+  letter-spacing: 0.4px;
+  text-align: left;
+  color: #fff;
+}
+
+.messages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* mantém um embaixo do outro */
+  align-items: center;    /* centraliza horizontalmente */
+}
+
+p.error {
+  color: #ff4d4f;
+  font-size: 0.875rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: block;
+  text-align: center;
+}
+
+p.success {
+  color: #1c5d07;
+  font-size: 0.875rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: block;
+text-align: center; 
+}
+
+
+@media (max-width: 900px) {
+    .login-container {
+        grid-template-columns: 1fr; /* empilha em telas pequenas */
+    }
+    .login-form-wrapper{order:2;}
+    .login-banner {order:1;
+    }
+}

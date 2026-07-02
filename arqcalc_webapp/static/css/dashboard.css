@@ -1,0 +1,131 @@
+/* EDITADA MAR-13 */
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column; /* Alinha o container de stats acima do grid de gráficos */
+    gap: 1.5rem;            /* Espaçamento vertical entre o topo e o corpo do dashboard */
+}
+  
+.stats-container {
+    display: flex;          /* Coloca os 4 cards coloridos lado a lado */
+    gap: 1rem;              /* Espaço entre cada card informativo */
+}
+
+.stat-card {
+    display: flex;          /* Alinha imagem (ícone) e conteúdo de texto horizontalmente */
+    align-items: center;    /* Garante que o ícone e o texto fiquem centralizados verticalmente entre si */
+    gap: 0.8rem;            /* Espaço entre a imagem e o texto */
+    padding: 1rem;          /* Respiro interno do card */
+    border-radius: 4px;     /* Curvatura moderna das bordas */
+    flex: 1;                /* Faz com que todos os 4 cards tenham exatamente a mesma largura */
+    color: #33334C;       /* Cor padrão do texto (cinza muito escuro) */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* Sombra suave para dar profundidade */
+}
+
+/* Seletores de tipografia para os cards de estatística */
+.stat-card i  { font-size: 1.4rem;                                 } /* Tamanho para ícones de fonte, se usados */
+.stat-card h3 { font-size: 1.4rem; margin: 0;                      } /* Título (número) grande e sem margens extras */
+.stat-card p  { font-size: 0.9rem; margin: 0; white-space: nowrap; } /* Rótulo menor; evita quebra de linha */
+
+/* Modificadores de cores para os cards (estilo Bootstrap/Utility classes) */
+.stat-card.blue   { background-color: #5EC3F1; }
+.stat-card.orange { background-color: #FF964D; }
+.stat-card.green  { background-color: #B1D05A; }
+.stat-card.yellow { background-color: #FFC82F; }
+
+.stat-card img {
+    width: 40px; height: 40px; /* Tamanho fixo para os ícones PNG */
+    object-fit: contain;       /* Garante que a imagem não distorça se as proporções variarem */
+}
+.stat-content { display: flex; flex-direction: column;                  } /* Empilha o Valor (H3) acima da Descrição (P) */
+
+.stat-value   { 
+  font-size: 1.6rem; font-weight: 900; color: #33334C;
+  line-height: 1.1;  /* Aproxima o número do texto de baixo para parecer um bloco único */
+}
+.stat-label { margin-top: 2px; font-size: 0.85rem; font-weight: 700; color: #33334C; }
+
+/* GRID DE GRÁFICOS */
+/* Container que gerencia o layout 2x2 */
+.charts-grid {
+    display: grid; width: 100%;
+    grid-template-columns: 1fr 1fr; /* Divide o espaço em duas colunas de tamanhos iguais */
+    gap: 1rem;                      /* Espaçamento entre os cards de gráfico */
+}
+
+.chart-card {
+    display: flex; flex-direction: column; /* Organiza Título -> Gráfico -> Info Adicional em linha vertical */
+    justify-content: space-between;        /* Empurra o conteúdo para as extremidades, alinhando os rodapés */
+    background: #F9F9F9;                 /* Fundo levemente cinza para contrastar com o fundo da página */
+    border: 1px solid #eee;              /* Borda sutil para definir o limite do card */
+    border-radius: 12px; padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    min-height: 400px;                     /* Importante: impede que o card "encolha" se o gráfico demorar a carregar */
+}
+
+.chart-card h4 {
+    margin-top: 0;
+    color: #33334C;
+    font-size: 1.1rem;
+    border-bottom: 1px solid #eee; /* Linha divisória abaixo do título do gráfico */
+    padding-bottom: 0.8rem;
+}
+
+.chart-card small { font-size:1rem; margin-left: 0.5rem; font-weight: 400; }
+
+/* Classes de controle do Canvas (Chart.js) */
+.canvas-wrapper {
+    flex-grow: 1;        /* Faz o gráfico ocupar todo o espaço disponível no centro do card */
+    position: relative;  /* Necessário para o Chart.js calcular o tamanho responsivo corretamente */
+}
+
+.media-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+}
+
+.media-info-left, .media-chart-right {
+    flex: 1; /* Divide o card ao meio (50% cada) */
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem; /* Espaço entre os blocos media-group */
+}
+
+.media-group { display: flex; flex-direction: column; text-align: left; }
+
+/* Container específico para o gráfico ter altura controlada */
+.chart-wrapper        { position: relative; min-height: 100px; flex-grow: 1; }
+.chart-wrapper canvas { margin-top: 5px; max-height: 120px !important; } /* Limita a altura para não esticar o card */
+
+.media-divider        { margin: 1rem 0; border: none; border-top: 1px solid #eee; }
+.media-label          { margin-bottom: 2px; color: #666; font-size: 0.8rem;       }
+
+.media-value          { color: #33334C; font-size: 1.1rem; font-weight: bold; }
+
+/* Containers de números grandes abaixo dos gráficos principais */
+.big-numbers-container { display: flex; margin-top: 1rem; gap: 1rem; justify-content: space-between; }
+
+.big-number {
+    display: flex; padding: 1.5rem; gap: 0.5rem;
+    align-items: center; justify-content: center;
+
+    background-color: #fff; /* Fundo branco para destacar do fundo cinza do card */
+    border-radius: 8px;
+    color: #33334C; font-weight: bold; text-align: center;
+    flex: 1;
+}
+
+.big-number-value { font-size: 1.8rem; font-weight: bold; white-space: nowrap; } /* Impede que o "R$" se separe do número */
+.big-number-label { font-size: 0.8rem; }
+
+@media (max-width: 900px) {
+  .charts-grid { grid-template-columns: 1fr; }
+  
+  /* Adicione isso para os cards do topo também empilharem ou ficarem 2x2 */
+  .stats-container { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+  }
+}

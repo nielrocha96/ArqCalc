@@ -1,0 +1,26 @@
+{% load static %}
+<!-- {# # EDITADO - ABRIL/13 #} -->
+<div class="phase_container" data-id="{{phase.id}}|default:'temp-1'}}">
+    <div class="phases">
+        <div class="container_icon">
+            <div class="icon_drop_phase">
+                <img src="{% static 'assets/icons/arrow_drop_down.png' %}" alt="arrow" />
+            </div>
+            {# Se index for '__prefix__', o JS substitui pelo número real #}
+            {% include 'components/form_fields/inputs.html' with id_input='phase_name'|add:index title=' ' label=' ' name_input='phase_name' input_placeholder='Nome da etapa...' input_type='text' value_input=phase.name|default:'' %}
+        </div>
+        
+        <div class="container_action">
+            {% include 'components/form_fields/select_base.html' with label='' title='Selecione o Profissional' id_input='professional_phase_'|add:index name_input='professional_phase' value_input=phase.professional_selected|default:'' list_content=tab_config.etapa.lists.content.professional_phase list_config=cfg_table.etapa.lists.content.professional_phase arrow_drop_down='true' %}
+
+            {% include 'components/buttons/btn_delete.html' with btn_class_additional='delete_phase' %}
+        </div>
+    </div>
+
+    {# Tabela de Itens: Se for Create (phase=None), data_table vai vazio #}
+    {% include 'components/table.html' with headers=tab_config.etapa.headers data_table=phase.items|default:'' isTab='true' table_cfg=cfg_table.etapa class_aditional='table_phases' %}
+
+    <div class="etapas-footer">
+        {% include 'components/buttons/btn_secondary.html' with btn='btn_primary' btn_class='btn-add-item-etapa ' title='Adicionar Item' %}
+    </div>
+</div>

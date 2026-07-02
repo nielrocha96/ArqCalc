@@ -1,0 +1,148 @@
+<!-- # EDITADO - ABRIL/2 -->
+
+{% extends 'base_geral.html' %}
+{% load static %} 
+{% block title %}Custos Fixos - ArqCalc{% endblock %}
+
+{% block links_css %}
+<link rel="stylesheet" href="{% static 'css/custos_fixos.css' %}?v=1" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block banner %}
+	<!--  ADICIONA TOPBAR NA TELA -->
+	{% include 'components/topbar.html' with title='Custos Fixos' %}
+	{% if banner == 'True' %}
+		{% include 'components/banner/banner.html' %}
+	{% endif %}
+
+	<div class="actions-bar">
+		<!--  ADICIONA CAMPO DE BUSCA NA TELA -->
+		{% include 'components/search_field.html' with title='Pesquisar CustosFixos'%}
+
+		<div class="actions-buttons">
+			<!--  ADICIONA BOTÕES FILTRO E NOVO PROJETO NA TELA -->
+			{% include 'components/buttons/btn_primary.html' with title='Filtrar' image='assets/icons/filter.png' class_aditional="btn_filter" %} 
+
+			{% include 'components/buttons/btn_primary.html' with title='Novo Custo' image='assets/icons/add.png' class_aditional="btn_add_custo_fixo" %}
+		</div>
+	</div>
+	<div class="container_table_dashboard" id="container_table_dashboard">
+		<div id="table-container">
+			{% include 'components/table.html' with headers=table_header data_table=table_data %}
+
+		</div>
+
+		<div class="graficos">
+			<div class="chart_box">
+				<p class="title_chart">Custos Fixos</p>
+
+				<div class="chart_main">
+
+					<div class="chart">
+						<canvas id="chartRosca"></canvas>
+					</div>
+					
+					<div id="legend_rosca" class="custom_legend"></div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="modal_confirmation_container" id="modal_confirmation_container">
+		{% include 'components/modals/modal_confirmation.html' %}	
+	</div>
+	
+	<div class="modal_new_costs_container" id="modal_new_costs_container">
+		{% include 'components/modals/modal_new_costs.html' with modal_title='' form_method='post' btn_submit_text='Salvar' class_aditional="modal_main" %}
+	</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+	<script src="{% static 'js/custos_fixos.js' %}" type="module"></script>
+	{{ chart_data|json_script:"chart-data-json" }}
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			const dataElement = document.getElementById('chart-data-json');
+			if (!dataElement) return;
+			const chartData = JSON.parse(dataElement.textContent);
+
+			// Função para criar a legenda manual
+			const createCustomLegend = (chart, containerId) => {
+				const container = document.getElementById(containerId);
+				if (!container) return;
+
+				const items = chart.data.labels;
+				const colors = chart.data.datasets[0].backgroundColor;
+
+				container.innerHTML = ''; 
+
+				items.forEach((label, i) => {
+					const div = document.createElement('div');
+					div.className = 'legend_item';
+
+					div.innerHTML = `
+						<span class="legend_color" style="background-color: ${colors[i % colors.length]}; width: 12px; height: 12px; display: inline-block; margin-right: 10px; border-radius: 2px;"></span>
+						<span class="legend_text">${label}</span>
+					`;
+
+					div.onclick = () => {
+						const isVisible = chart.getDataVisibility(i);
+						chart.toggleDataVisibility(i);
+						chart.update();
+						div.style.opacity = isVisible ? '0.5' : '1';
+						div.style.textDecoration = isVisible ? 'line-through' : 'none';
+					};
+
+					container.appendChild(div);
+				});
+			};
+
+			const commonOptions = {
+				responsive: true,
+				maintainAspectRatio: false,
+				plugins: {
+					legend: { display: false },
+					tooltip: {
+						enabled: true,
+						backgroundColor: 'rgba(0,0,0,0.8)',
+						padding: 10,
+						callbacks: {
+							label: function(context) {
+								const value = context.raw;
+								const total = context.dataset.data.reduce((a, b) => a + b, 0);
+								const percentage = ((value / total) * 100).toFixed(1);
+								return ` R$ ${value.toLocaleString('pt-BR')} (${percentage}%)`;
+							}
+						}
+					}
+				}
+			};
+
+			// Inicialização do Gráfico de Rosca
+			const ctxRosca = document.getElementById('chartRosca');
+			if (ctxRosca && chartData.rosca) {
+				const rosca = new Chart(ctxRosca, {
+					type: 'doughnut',
+					data: {
+						labels: chartData.rosca.labels,
+						datasets: [{
+							data: chartData.rosca.data,
+							backgroundColor: ['#FF964D', '#B1D05A', '#5EC3F1', '#A29BFE', '#FF6384'],
+							borderWidth: 0,      
+							spacing: 0,      
+						}]
+					},
+					options: commonOptions
+				});
+				createCustomLegend(rosca, 'legend_rosca');
+			}
+
+		});
+	</script>
+{% endblock %}

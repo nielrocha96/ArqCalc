@@ -1,0 +1,83 @@
+
+
+/**
+ * EDIATAD MAR-13
+ *
+ * @format
+ */
+
+.container_table_dashboard {
+	display: flex;
+	height: 60%;
+	gap: 1rem;
+	flex: 1;
+}
+
+#table-container{
+    max-width: 800px ;
+}
+#table_custos_fixos{
+    max-width: 800px ;
+}
+
+/* GRAFICOS */
+
+.graficos {
+	display: flex;
+    flex: 1;
+    max-width: 30rem;
+	flex-direction: column;
+	gap: 1.5rem;
+	padding: 1rem;
+}
+
+.chart_box {
+    display: flex;
+    flex-direction: column; /* Título em cima, conteúdo embaixo */
+    background: var(--primary-light);
+    padding: 15px;
+    border-radius: 8px;
+    height: 280px; /* Aumentei um pouco para caber o título + gráfico */
+    width: 100%;
+}
+
+.chart_main {
+    display: flex;
+    flex-direction: row; /* Gráfico e Legenda lado a lado */
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Evita que o gráfico quebre o card */
+}
+
+.chart {
+    flex: 1.2; /* Dá um pouco mais de espaço para o gráfico */
+    max-width: 180px;
+    max-height: 180px;
+    position: relative;
+    padding: 8px;
+}
+
+.custom_legend {
+    flex: 1; 
+    max-height: 180px; /* Limita a altura para o scroll funcionar */
+    overflow-y: auto; 
+    padding-left: 10px;
+}
+
+/* Garante que o texto da legenda não suma se for muito longo */
+.legend_text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 120px; /* Ajuste conforme a largura do seu card */
+}
+
+.legend_color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}

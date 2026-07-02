@@ -1,0 +1,29 @@
+<!-- EDITADO MAR-13 -->
+{% load static %}
+
+<header class="main-header">
+	<div class="header-title">
+		<div class="header-icon">
+			<img src="{% static 'assets/icons/projetos_rosa.png' %}" alt="{{ title }}" />
+		</div>
+		<h1>{{ title }}</h1>
+	</div>
+	<section class="card_profile">
+
+		<div>
+			{% include 'components/buttons/btn_notification.html' with idItem='btn_notification' %}
+		</div>
+
+		<div class="card_info">
+			<img src="{% static 'assets/img/avatars/1.jpg' %}" alt="image perfil" class="profile-img" />
+			<div>
+				<p class="professional_name">{{ usuario.username }}</p>
+				<small class="job_description">{{ usuario.position}}</small>
+			</div>
+		</div>		
+	</section>
+</header>
+
+<!-- Modal Notificações -->
+{% include 'components/modals/modal_notifications.html' with idItem='modal_notification' %}
+<!-- O idItem deve ser passado de acordo id do usuário ou do objeto de notificações-->

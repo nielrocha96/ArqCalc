@@ -1,0 +1,12 @@
+<!-- EDITADO MAR-25 -->
+{% load static %} 
+{% load config_table %}
+<!-- PUXA AS CONFIGURAÇÕES DE HEAD DE TEMPLATETAGS  -->
+<!-- ATRIBUIR CLASSES E ATIVAÇÃO DE BOTÕES -->
+{% get_table_vars as cfg_table %} 
+
+<div class="tab-content" id="tab-custo">
+    {% include 'components/table.html' with headers=tab_config.custo.headers data_table=custo isTab='true' table_cfg=cfg_table.custo class_aditional='table_cost' %}
+
+    {% include 'components/buttons/btn_secondary.html' with btn='btn_primary_dark' btn_class='add-custo-btn' title='Adicionar custo'  %}
+</div>

@@ -1,0 +1,71 @@
+<!-- EDITADO MAR-13 -->
+
+{% load static %}
+<div class="pagination">
+	<div class="page_numbers">
+		<!-- Botão Voltar --> 
+        {% if page_obj.has_previous %}
+		<a
+			href       ="javascript:void(0)"
+			class      ="btn_pag arrow_nav"
+			hx-get     ="?page={{ page_obj.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+			hx-target  ="#table-container"
+			hx-push-url="true">
+            
+			<img src="{% static 'assets/icons/arrow.png' %}" alt="Icon arrow left" />
+		</a>
+		{% else %}
+    		<span class="btn_pag disabled"></span>
+		{% endif %} 
+
+        <!-- Carrossel de Números -->
+        {% for i in custom_page_range %}
+            {% if i == page_obj.number %}
+                <span class="btn_pag active">{{ i }}</span>
+            {% elif i == page_obj.paginator.ELLIPSIS %}
+		        <span class="btn_pag ellipsis">...</span>
+		    {% else %}
+
+            <a href="javascript:void(0)"
+               class      ="btn_pag "
+               hx-get     ="?page={{ i }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+               hx-target  ="#table-container"
+               hx-push-url="true">
+               {{ i }}
+            </a>
+            {% endif %} 
+        {% endfor %} 
+
+        <!-- Botão Avançar -->
+        {% if page_obj.has_next %}
+            <a href       ="javascript:void(0)"
+               class      ="btn_pag arrow_nav"
+               hx-get     ="?page={{ page_obj.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}"
+               hx-target  ="#table-container"
+               hx-push-url="true">
+
+                <img src="{% static 'assets/icons/arrow.png' %}" alt="Icon arrow left" class="icon_arrow_right"/>
+            </a>
+		{% else %}
+		    <span class="btn_pag disabled"></span>
+		{% endif %}
+	</div>
+
+    <div class="go_to_page">
+        <label>Ir para página</label>
+
+        <div class="custom_select" id="page_select" data-url="{% url 'projetos' %}">
+            <button type="button" class="custom_selected">
+                {{ page_obj.number }}
+            </button>
+
+            <ul class="custom_options">
+                {% for i in page_obj.paginator.page_range %}
+                    <li data-value="{{ i }}" {% if page_obj.number == i %}class="active"{% endif %}>
+                        {{ i }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+/* EDITADO ABRIL/13 */
+
+.container_filter{
+    position: absolute;
+    z-index: 1000;
+	top: 12.5rem;
+    right: 14.5rem;
+	display: none;
+    justify-content: center;
+	width: 32rem;
+	height: 30rem;
+	border-radius: 1rem;
+    background: linear-gradient(180deg, var(--border-dark) 0%, var(--icon-alert) 100%);
+    border: 2px solid var(--primary-light);
+	transition: 0.3s;
+}
+
+
+.filters{
+    display: flex;
+    flex-wrap: wrap;
+    width: 30rem;
+    height: 18rem;
+    border-radius: .5rem;
+    font-weight: 400;
+    padding: 1rem;
+    color: var(--primary-light);
+}
+
+.filter{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+
+.field_filter{
+    color: var(--primary-light) !important;
+}
+

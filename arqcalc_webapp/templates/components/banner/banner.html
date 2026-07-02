@@ -1,0 +1,38 @@
+
+<!-- # EDITADO - ABRIL/2 -->
+
+
+{% load static %}
+
+<div class="banner">
+    <div class="container_banner">
+
+        <div class="text_banner">
+            <p>Conheça uma forma simples de fazer orçamentos</p>
+        </div>
+        
+        <div class="first_image_banner">
+            <img src="{% static 'assets/img/login/image2.jpeg' %}" alt="imagem">
+        </div>
+        
+        <div class="second_image_banner">
+            <img src="{% static 'assets/img/login/image1.jpeg' %}" alt="imagem">
+            
+        </div>
+        
+        <div class="secondy_text_banner">
+            <p>
+                Tenha mais tempo para seus clientes
+            </p>
+        </div>
+        
+        <div class="buttom_banner">
+            <a href="{% url 'cadastro' %}">
+                <button class="btn_ativar">
+                    Ativar gratuitamente por 90 dias
+                </button>
+            </a>
+        </div>
+    
+    </div>
+</div>

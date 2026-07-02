@@ -1,0 +1,14 @@
+<!-- EDITADO ABRIL/10 -->
+{% load static %}
+<thead class="table_head">
+    <tr class="row_head_table row_head_primary">
+        <th>
+            <label for="preco_venda">{{title}}</label>
+        </th>
+        {% if input == 'true' %}
+            <th>
+                <input type="text" id="preco_venda" placeholder="R$ 0.000,00" class="input_table input-currency" required>
+            </th>
+        {% endif %}
+    </tr>
+</thead>

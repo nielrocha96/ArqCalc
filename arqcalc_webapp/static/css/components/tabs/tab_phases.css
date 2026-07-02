@@ -1,0 +1,163 @@
+/* EDITADA MAR-13 */
+
+/* --- INÍCIO: ESTILOS PARA A NOVA ABA DE ETAPAS (VERSÃO DETALHADA) --- */
+.phase_container             { margin-bottom: 1rem; }
+.close_phase                 { height: 5rem; overflow: hidden; }
+.phase_container.close_phase { margin-bottom: 0; }
+
+.phases{
+    display: flex;
+    padding: 0 1rem 0 1rem;
+    height: 5rem; width: 100%;
+    align-items: center; justify-content: space-between;
+
+	background-color: var(--primary-light);
+    border-bottom: 2px solid var(--border-dark);
+    transition: .2s;
+}
+
+.rotate_icon{ transform: rotate(180deg); transition: .2s; }
+
+.container_icon{
+	display: flex;
+	gap: 0 2rem;
+	align-items: center;
+	flex: 1;
+}
+.container_action{
+	display: flex;
+	gap: 1rem;
+	align-items: center; justify-content: end;
+	flex: 1;
+}
+
+.icon_drop_phase     { height: 20px; width: 20px; cursor: pointer; }
+.icon_drop_phase img { height: 20px; width: 20px;                  }
+
+.name_phase{
+	margin: 0% 10% 0% 5%;
+	padding: 2px;
+    height: 2rem; width: 10.8rem;
+    border-radius: 4px;
+}
+
+.etapas-container .etapas-estilo-container {
+	max-width: 400px;
+	margin-bottom: 2rem;
+}
+
+.etapa-bloco {
+	margin-bottom: 1.5rem;
+	background-color: var(--white);
+	border: 1px solid var(--border-color); border-radius: 8px;
+	overflow: hidden;
+	transition: all 0.3s ease;
+}
+
+.etapa-bloco-header {
+	display: flex;
+	padding: 1rem 1.5rem;
+	gap: 1rem;
+	align-items: center;
+	background-color: var(--primary-light);
+	cursor: pointer;
+}
+
+.etapa-bloco-header .toggle-etapa-btn {
+	background: none;
+	padding: 0.5rem;
+	border: none;
+	cursor: pointer;
+	color: var(--primary-color); font-size: 1rem;
+	transition: transform 0.3s ease;
+}
+
+.etapa-bloco.is-closed .toggle-etapa-btn { transform: rotate(-90deg); }
+
+.etapa-bloco-header .input-nome-etapa {
+	padding: 0.5rem;
+	background: transparent;
+	border: none;
+	color: var(--text-dark); font-size: 1.1rem; font-weight: 600;
+	flex-grow: 1;
+}
+
+.etapa-bloco-header .select-responsavel-etapa {
+	padding: 8px 12px;
+	max-width: 250px;
+	border: 1px solid var(--border-color); border-radius: 6px;
+}
+
+.etapa-bloco-body { padding: 1.5rem; display: block; }
+
+.etapa-bloco.is-closed .etapa-bloco-body { display: none; }
+
+.itens-header {
+	display: grid;
+	margin-bottom: 1rem;
+	padding: 0 1rem;
+	gap: 1rem;
+
+	grid-template-columns: 1fr 1.5fr 1fr 1fr 80px;
+	align-items: center;
+	color: var(--text-light); font-size: 0.8rem; font-weight: 500;
+	text-transform: uppercase;
+}
+
+.lista-de-itens { display: flex; flex-direction: column; gap: 0.75rem; }
+
+.item-tarefa {
+	display: grid;
+	padding: 0.75rem 1rem;
+	gap: 1rem;
+
+	grid-template-columns: 1fr 1.5fr 1fr 1fr 80px;
+	align-items: center;
+	background-color: var(--primary-light);
+	border: 1px solid var(--border-color); border-radius: 8px;
+	transition: background-color 0.2s;
+}
+
+.item-tarefa:hover { background-color: #e0d9ff; }
+
+.item-tarefa input[type="text"], .item-tarefa input[type="number"], .item-tarefa select {
+	width: 100%;
+	padding: 10px;
+	background: var(--white);
+	border: 1px solid var(--border-color); border-radius: 6px;
+	font-family: "Poppins", sans-serif; font-size: 14px;
+	transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.item-tarefa input[type="text"]:focus, .item-tarefa input[type="number"]:focus, .item-tarefa select:focus {
+	outline: none;
+	border-color: var(--primary-color);
+	box-shadow: 0 0 0 2px var(--primary-light);
+}
+
+.item-tarefa .item-total-display {
+	padding: 8px;
+	color: var(--text-dark); font-weight: 500;
+	text-align: right;
+}
+
+.item-tarefa .item-actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
+
+.item-tarefa .icon-button {
+	display: flex;
+	height: 40px; width: 40px;
+	padding: 0.5rem;
+	align-items: center; justify-content: center;
+
+	background-color: transparent;
+	border: none; border-radius: 50%;
+
+	color: var(--text-light); font-size: 1.1rem;
+	cursor: pointer;
+	transition: background-color 0.2s, color 0.2s;
+}
+
+.item-tarefa .icon-button:hover { background-color: #e9ecef; color: var(--primary-color); }
+
+.etapas-footer                   { margin-top:  2rem; }
+.etapas-footer .btn_primary_dark { margin-left: 0;    }

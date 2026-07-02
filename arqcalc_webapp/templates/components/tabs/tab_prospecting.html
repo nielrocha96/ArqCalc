@@ -1,0 +1,160 @@
+<!-- EDITADO MAR-20 -->
+{% load static %}
+{% load config_table %}
+<!-- PUXA AS CONFIGURAÇÕES DE HEAD DE TEMPLATETAGS  -->
+<!-- ATRIBUIR CLASSES E ATIVAÇÃO DE BOTÕES -->
+{% get_table_vars as cfg_table %} 
+
+
+<div class="tab-content active"  id="tab-prospeccao">
+    
+    <h2>Formulário de Qualificação</h2>
+
+     <!-- Identificação do Projeto -->
+    <fieldset class="form-row form_row_prospeccao">
+        <legend class="legend_inputs">Identificação do Projeto - Qual é o tipo do seu projeto?</legend>
+        <div class="inputs_prospeccao">
+
+            <label class="input_label"><input type="radio" name="tipoProjeto" value="Casa nova|2" required> Casa nova</label>
+            <label class="input_label"><input type="radio" name="tipoProjeto" value="Reforma completa|2"> Reforma completa</label>
+            <label class="input_label"><input type="radio" name="tipoProjeto" value="Reforma parcial|1"> Reforma parcial</label>
+            <label class="input_label"><input type="radio" name="tipoProjeto" value="Projeto comercial|2"> Projeto comercial</label>
+            <label class="input_label"><input type="radio" name="tipoProjeto" value="Projeto corporativo|2"> Projeto corporativo</label>
+            <label class="input_label"><input type="radio" name="tipoProjeto" value="Outro|1"> Outro</label>
+        </div>
+    </fieldset>
+
+    <!-- Prazo -->
+    <fieldset class="form-row form_row_prospeccao">
+        <legend class="legend_inputs">Prazo - Qual é o prazo ideal para ter o projeto pronto?</legend>
+        <div class="inputs_prospeccao">
+
+            <label class="input_label"><input type="radio" name="prazo" value="Até 30 dias|-1" required> Até 30 dias</label>
+            <label class="input_label"><input type="radio" name="prazo" value="1-2 meses|2"> 1-2 meses</label>
+            <label class="input_label"><input type="radio" name="prazo" value="3-4 meses|2"> 3-4 meses</label>
+            <label class="input_label"><input type="radio" name="prazo" value="Mais de 6 meses|1"> Mais de 6 meses</label>
+            <label class="input_label"><input type="radio" name="prazo" value="Não tenho pressa|1"> Não tenho pressa</label>
+        </div>
+    </fieldset>
+
+    <!-- Terreno -->
+    <fieldset class="form-row form_row_prospeccao">
+        <legend class="legend_inputs">Terreno - Já tem o terreno/imóvel definido?</legend>
+        <div class="inputs_prospeccao">
+
+            <label class="input_label"><input type="radio" name="terreno" value="Sim, já possuo|2" required> Sim, já possuo</label>
+            <label class="input_label"><input type="radio" name="terreno" value="Sim, já escolhi mas ainda não comprei|2"> Sim, já escolhi mas ainda não comprei</label>
+            <label class="input_label"><input type="radio" name="terreno" value="Ainda estou procurando|-1"> Ainda estou procurando</label>
+            <label class="input_label"><input type="radio" name="terreno" value="Depende do projeto|1"> Depende do projeto</label>
+        </div>
+    </fieldset>
+
+    <!-- Experiência e Expectativas -->
+    <fieldset class="form-row form_row_prospeccao">
+        <legend class="legend_inputs">Experiência e Expectativas - É a primeira vez contratando um arquiteto?</legend>
+        <div class="inputs_prospeccao">
+
+            <label class="input_label"><input type="radio" name="experiencia" value="Sim, primeira vez|2" required> Sim, primeira vez</label>
+            <label class="input_label"><input type="radio" name="experiencia" value="Experiência positiva|3"> Não, já contratei antes (experiência positiva)</label>
+            <label class="input_label"><input type="radio" name="experiencia" value="Experiência negativa|1"> Não, já contratei antes (experiência negativa)</label>
+            <label class="input_label"><input type="radio" name="experiencia" value="Já tentei sozinho|1"> Já tentei fazer por conta própria</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="form-row form_row_prospeccao">
+        <legend class="legend_inputs">Como pretende executar o projeto?</legend>
+        <div class="inputs_prospeccao">
+
+            <label class="input_label"><input type="radio" name="execucao" value="Construtor de confiança|2" required> Com construtor/engenheiro de confiança</label>
+            <label class="input_label"><input type="radio" name="execucao" value="Preciso encontrar|1"> Ainda preciso encontrar construtor</label>
+            <label class="input_label"><input type="radio" name="execucao" value="Execução própria|-1"> Execução própria (eu mesmo)</label>
+            <label class="input_label"><input type="radio" name="execucao" value="Não pensei nisso|0"> Ainda não pensei nisso</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="form-row form_row_prospeccao">
+        <legend class="legend_inputs">Que tipo de acompanhamento espera do arquiteto?</legend>
+        <div class="inputs_prospeccao">
+
+            <label class="input_label"><input type="radio" name="acompanhamento" value="Projeto|1" required> Só o projeto, execução por minha conta</label>
+            <label class="input_label"><input type="radio" name="acompanhamento" value="Consultorias|2"> Consultorias pontuais durante obra</label>
+            <label class="input_label"><input type="radio" name="acompanhamento" value="Completo|3"> Acompanhamento completo</label>
+            <label class="input_label"><input type="radio" name="acompanhamento" value="Turnkey|3"> Projeto + execução turnkey</label>
+        </div>
+    </fieldset>
+
+    <!-- Perfil Decisório -->
+    <fieldset class="form-row form_row_prospeccao">
+        <legend class="legend_inputs">Perfil Decisório - Quem toma a decisão final sobre contratar?</legend>
+        <div class="inputs_prospeccao">
+
+            <label class="input_label"><input type="radio" name="decisao" value="Eu sozinho|2" required> Eu sozinho(a)</label>
+            <label class="input_label"><input type="radio" name="decisao" value="Eu e cônjuge|2"> Eu e meu(minha) cônjuge</label>
+            <label class="input_label"><input type="radio" name="decisao" value="Preciso consultar|-1"> Preciso consultar família/sócios</label>
+            <label class="input_label"><input type="radio" name="decisao" value="Autonomia total|3"> Tenho autonomia total</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="form-row form_row_prospeccao">
+        <legend class="legend_inputs">O que é mais importante para você?</legend>
+        <div class="inputs_prospeccao">
+
+            <label class="input_label"><input type="radio" name="importancia" value="Preço baixo|-2" required> Preço mais baixo possível</label>
+            <label class="input_label"><input type="radio" name="importancia" value="Custo-benefício|2"> Melhor custo-benefício</label>
+            <label class="input_label"><input type="radio" name="importancia" value="Qualidade máxima|3"> Qualidade máxima</label>
+            <label class="input_label"><input type="radio" name="importancia" value="Prazo|1"> Prazo de entrega</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="form-row form_row_prospeccao">
+        <legend class="legend_inputs">Qual seu orçamento reservado especificamente para o projeto arquitetônico?</legend>
+        <div class="inputs_prospeccao">
+
+            <label class="input_label"><input type="radio" name="orcamento" value="Até 5000|1" required> Até R$ 5.000</label>
+            <label class="input_label"><input type="radio" name="orcamento" value="5001 a 10000|2" > R$ 5.001 a R$ 10.000</label>
+            <label class="input_label"><input type="radio" name="orcamento" value="10001 a 20000|3"> R$ 10.001 a R$ 20.000</label>
+            <label class="input_label"><input type="radio" name="orcamento" value="20001 a 50000|3"> R$ 20.001 a R$ 50.000</label>
+            <label class="input_label"><input type="radio" name="orcamento" value="Acima de 50000|3"> Acima de R$ 50.000</label>
+            <label class="input_label"><input type="radio" name="orcamento" value="Não definido|-1"> Ainda não defini</label>
+        </div>
+    </fieldset>
+
+    <!-- Qualificação Avançada -->
+    <fieldset class="form-row form_row_prospeccao">
+        <legend class="legend_inputs">O que te motivou a buscar um arquiteto AGORA?</legend>
+        <div class="inputs_prospeccao">
+
+            <label class="input_label"><input type="radio" name="motivacao" value="Sonho|2" required> Sempre foi um sonho</label>
+            <label class="input_label"><input type="radio" name="motivacao" value="Problema urgente|1"> Problema urgente para resolver</label>
+            <label class="input_label"><input type="radio" name="motivacao" value="Investimento|2"> Oportunidade de investimento</label>
+            <label class="input_label"><input type="radio" name="motivacao" value="Experiência ruim|1"> Experiência ruim anterior</label>
+            <label class="input_label"><input type="radio" name="motivacao" value="Recomendação|2"> Recomendação de alguém</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="form-row form_row_prospeccao">
+        <legend class="legend_inputs">Se o projeto não sair conforme esperado, qual seria o impacto?</legend>
+        <div class="inputs_prospeccao">
+
+            <label class="input_label"><input type="radio" name="impacto" value="Frustração|1" required> Apenas frustração pessoal</label>
+            <label class="input_label"><input type="radio" name="impacto" value="Perda financeira|2"> Perda financeira significativa</label>
+            <label class="input_label"><input type="radio" name="impacto" value="Problemas familiares|2"> Problemas familiares/sociais</label>
+            <label class="input_label"><input type="radio" name="impacto" value="Prejuízo negócio|2"> Prejuízo para meu negócio</label>
+            <label class="input_label"><input type="radio" name="impacto" value="Sem problemas|0"> Não vejo grandes problemas</label>
+        </div>
+    </fieldset>
+
+    <fieldset class="form-row form_row_prospeccao">
+        <legend class="legend_inputs">Como soube do meu trabalho?</legend>
+        <div class="inputs_prospeccao">
+
+            <label class="input_label"><input type="radio" name="origem" value="Cliente anterior|3" required> Indicação de cliente anterior</label>
+            <label class="input_label"><input type="radio" name="origem" value="Redes sociais|2"> Redes sociais</label>
+            <label class="input_label"><input type="radio" name="origem" value="Google|1"> Google/site</label>
+            <label class="input_label"><input type="radio" name="origem" value="Outro profissional|3"> Indicação de outro profissional</label>
+            <label class="input_label"><input type="radio" name="origem" value="Evento|2"> Evento/palestra</label>
+        </div>
+    </fieldset>
+
+
+</div>

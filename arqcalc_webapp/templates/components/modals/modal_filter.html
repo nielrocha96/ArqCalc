@@ -1,0 +1,59 @@
+<!-- @format -->
+<!-- # EDITADO - ABRIL/13 -->
+
+{% load static %} {% load config_table %} {% get_table_vars as cfg_table %}
+
+<div
+	class="container_filter"
+	id="id_filter"
+	hx-get="{% url request.resolver_match.url_name %}"
+	hx-target="#table-container"
+	hx-include="input"
+	hx-trigger="change, keyup delay:500ms from:input">
+    
+	<div class="filters">
+
+		{% if cfg_table.filter.fields.account_name == 'true' %}
+            <div class="filter">
+                {% include 'components/form_fields/inputs.html' with id_input='account_name' title='nome do cliente' name_input='account_name' input_placeholder='' input_type='text' value_input='' class_aditinal='field_filter' %}
+            </div>
+		{% endif %} 
+
+		{% if cfg_table.filter.fields.description == 'true' %}
+            <div class="filter">
+                {% include 'components/form_fields/inputs.html' with id_input='description' title='descrição' name_input='description' input_placeholder='' input_type='text' value_input='' class_aditinal='field_filter' %}
+            </div>
+		{% endif %} 
+        
+        {% if cfg_table.filter.fields.project_name == 'true' %}
+            <div class="filter">
+                {% include 'components/form_fields/inputs.html' with id_input='project_name' title='nome do projeto' name_input='project_name' input_placeholder='' input_type='text' value_input='' class_aditinal='field_filter' %}
+            </div>
+		{% endif %} 
+        
+        {% if cfg_table.filter.fields.date_start == 'true' %}
+            <div class="filter">
+                {% include 'components/form_fields/inputs.html' with id_input='date_start' title='data de início' name_input='date_start' input_placeholder='' input_type='date' value_input='' class_aditinal='field_filter' %}
+            </div>
+		{% endif %} 
+        
+        {% if cfg_table.filter.fields.date_end == 'true' %}
+            <div class="filter">
+                {% include 'components/form_fields/inputs.html' with id_input='date_end' title='data de fim' name_input='date_end' input_placeholder='' input_type='date' value_input='' class_aditinal='field_filter' %}
+            </div>
+		{% endif %} 
+        
+        {% if cfg_table.filter.fields.status_input == 'true' %}
+            <div class="filter">
+                {# Status do Projeto #} 
+                {% include 'components/form_fields/select_base.html' with label='status do projeto' title='Em andamento' id_input='status_input' name_input='status_input' value_input='' list_content=lists.content.status list_config=cfg_table.lists.content.status class_aditinal='field_filter' %}
+            </div>
+		{% endif %} 
+        
+        {% if cfg_table.filter.fields.value == 'true' %}
+            <div class="filter">
+                {% include 'components/form_fields/inputs.html' with id_input='value' title='valor (R$)' input_placeholder='' input_type='number' value_input='' class_aditinal='field_filter' %}
+            </div>
+		{% endif %}
+	</div>
+</div>

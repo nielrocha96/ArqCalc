@@ -1,0 +1,45 @@
+/* EDITADO MAR-13 */
+
+.modal {
+	display: none;
+	width: 0; height: 0;
+
+	position: absolute; top: 6rem; left: 50%;
+
+	color: var(--text-light);
+    border: 2px solid var(--text-header); border-radius: 1rem;
+
+	transition: 0.3s;
+	overflow: hidden;
+    z-index: 1000;
+}
+
+.btn_close_modal_notification{
+	position: absolute;
+	top: 16px;
+	right: 20px;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	color: var(--text-header);
+	font-size: 1rem;
+	font-weight: 700;
+	transition: 0.2s;
+	&:hover{
+		transform: scale(1.5);
+	}
+}
+
+.notification_header {
+	display: flex;
+	height: 5rem;
+	padding: 1.5rem 0 1.5rem 20px;
+	background-color: var(--primary-light);
+	color: var(--text-header); font-size: 1.7rem; font-weight: 700;
+}
+
+.notification_messages {
+    display: flex;
+ 	padding: 0.8rem;
+    align-items: center;
+}

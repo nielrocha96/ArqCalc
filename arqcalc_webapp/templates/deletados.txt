@@ -1,0 +1,8 @@
+base_login
+            <div class="login-footer">
+                <p>Leia os <a href="/termos-de-uso" target="_blank" class="footer-link">termos de uso</a> da ArqCalc.</p>
+            </div>
+login
+<!--    <p>ou</p>
+        <p><img src="{% static 'assets/instagram_logo.png' %}">Entrar com Instagram</p>
+-->

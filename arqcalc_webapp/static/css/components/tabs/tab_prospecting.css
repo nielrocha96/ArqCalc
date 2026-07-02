@@ -1,0 +1,29 @@
+
+.form_row_prospeccao{
+    margin: 1rem 0;
+    border: 1px solid var(--border-dark);
+}
+
+.legend_inputs{
+    color: var(--text-header);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: .5rem;
+}
+.inputs_prospeccao{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 1rem .2rem;
+}
+
+.inputs_prospeccao .form-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.inputs_prospeccao .input_label  {
+    margin: 0 .7rem ;
+   text-wrap: nowrap;
+   width: auto;
+}

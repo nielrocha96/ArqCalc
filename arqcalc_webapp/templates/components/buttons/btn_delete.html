@@ -1,0 +1,13 @@
+<!-- EDITADO MAR-20 -->
+
+{% load static %}
+<!-- EDITADO ABRIL/2 -->
+
+<!-- A classe em btn_class_additional serve para identificar o botão de delete para a função em  -->
+<button class="btn_delete trigger-modal {{ btn_class_additional|default:'delete_item' }}" 
+		type="button"
+		id="btn_delete_{{ request.resolver_match.url_name }}"
+    	data-id_content="content_delete_modal"
+		data-url="{% if request.resolver_match.url_name == 'projetos' %}/projetos/{% elif request.resolver_match.url_name == 'custos_fixos' %}/custos_fixos/{% else %}/impostos/{% endif %}"
+		data-page="{{ request.resolver_match.url_name }}">
+</button>

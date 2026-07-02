@@ -1,0 +1,49 @@
+/* EDITADO ABRIL-13 */
+
+/** Variáveis de Cor (para manter a consistência do design) */
+:root {
+	--primary-color:    #6a5acd;
+	--primary-light:    #fbf8ff;
+	--gray-light:       #D9D6DD;
+	--white: #fff;
+
+	--background-color: #ffff;
+	--background-footer: #ECE6EE;
+	--background-footer-table: #DFD6E3;
+	
+	--text-very-light:  #b1afb4;
+	--text-light:       #5f5b64;
+	--text-color:       #3b393f;
+	--text-dark:        #333;
+	--text-header:      #33334C;
+
+	--tabs-border-color:   #a120cc;
+	--tabs-selected-color: #a120cc;
+	--tabs-selected-bg:    #FBF8FF;
+	
+	--border-color: #afafaf;
+	--border-dark:  #9067c3;
+
+	--btn-primary:  #eee0ff;
+
+	--danger-alert: #dc3545;
+	--icon-alert: #321265;
+
+	/* STATUS */
+	--status-aprovado:        #eaf7ed;
+	--status-aprovado-bg:     #d4ffe0; --status-aprovado-text:   #46964e;
+	--status-reprovado-bg:    #ffcfe0; --status-reprovado-text:  #b15979;
+	--status-andamento-bg:    #ffe3b8; --status-andamento-text:  #9e622a;
+	--status-aguardando-bg:   #fffbcb; --status-aguardando-text: #a48d51;
+}
+
+.status {
+	display: flex; align-items: center; justify-content: center;
+	height: 1.75rem; width: 10rem;
+	border-radius: 4px;
+}
+
+.status-aprovado            { background-color: var(--status-aprovado-bg);   color: var(--status-aprovado-text);   }
+.status-reprovado           { background-color: var(--status-reprovado-bg);  color: var(--status-reprovado-text);  }
+.status-em-andamento        { background-color: var(--status-andamento-bg);  color: var(--status-andamento-text);  }
+.status-aguardando-resposta { background-color: var(--status-aguardando-bg); color: var(--status-aguardando-text); }

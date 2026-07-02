@@ -1,0 +1,42 @@
+ <!-- EDITADO ARBIL/13 -->
+{% load static %}
+{% load config_table %}
+{% get_table_vars as cfg_table %}
+
+
+<div class="tab-content" id="tab-etapa">
+
+    <div class="etapas-container">
+        {# 1. Estilo do Projeto - Valor default se for Create #}
+        {% include 'components/form_fields/select_base.html' with label='Selecione Estilo Do Projeto' id_input='style_project' name_input='style_project' value_input=etapa.style_project|default:'Padrão' list_content=tab_config.etapa.lists.content.style_project list_config=cfg_table.etapa.lists.content.style_project %}
+
+        <h4 class="secao-titulo">Etapas Do Projeto</h4>
+
+        <div id="phases_list">
+            {# 2. Loop de Edição: Só renderiza se houver dados no context_data #}
+            {% for template in etapa.templates %}
+            {% if template.phases|length > 0 %} 
+            
+                {% for phase in template.phases %}
+                    {% include 'components/tabs/phase_block.html' with phase=phase index=forloop.counter %}
+                {% endfor %}
+
+            {% else %}
+            
+                {% include 'components/tabs/phase_block.html' with phase=None index=forloop.counter %}
+            {% endif %}
+            {% endfor %}
+        </div>
+
+		
+        <template id="phase-template">
+            {% include 'components/tabs/phase_block.html' with phase=None index='__prefix__' %}
+        </template>
+
+        <div class="etapas-footer">
+            {% include 'components/buttons/btn_secondary.html' with btn='btn_primary_dark' btn_class='add-etapa-btn' title='Adicionar Etapa' %}
+        </div>
+
+    </div>
+
+</div>

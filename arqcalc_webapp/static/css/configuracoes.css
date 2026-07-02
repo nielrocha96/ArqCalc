@@ -1,0 +1,130 @@
+/**
+ * # EDITADO - ABRIL/10
+ *
+ * @format
+ */
+
+.configuracoes_form {
+	display: flex;
+	flex-direction: column;
+	justify-items: center;
+	gap: 1.5rem;
+	width: 100%;
+	max-width: 600px;
+	margin: 2rem auto;
+}
+
+.tabs_bar {
+	justify-content: space-around;
+}
+.tabs_bar .tab_config {
+	width: 100%;
+	text-align: center;
+	justify-content: center;
+}
+
+.tab-content {
+	display: none;
+	padding: 20px;
+	border: 1px solid var(--border-dark);
+}
+
+.tab-content.active {
+	display: block;
+}
+
+/* Grid de Perfil */
+.profile_grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 15px;
+}
+
+.full_width {
+	grid-column: span 2;
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	text-align: center;
+	width: 100%;
+}
+
+.form-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 15px;
+}
+
+.form-group label {
+	font-weight: bold;
+	margin-bottom: 5px;
+	font-size: 0.9rem;
+}
+#input_photo {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.input_label.input_file_custom {
+	position: relative;
+	display: inline-block;
+	z-index: 0;
+	padding: 10px 20px;
+	color: var(--background-color) !important;
+	border-radius: 5px;
+	cursor: pointer;
+	font-weight: 500;
+	margin-bottom: 5px;
+	background: linear-gradient(
+		315deg,
+		var(--primary-color),
+		var(--border-dark)
+	);
+	overflow: hidden;
+}
+
+.input_label.input_file_custom::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		135deg,
+		var(--primary-color),
+		var(--border-dark)
+	);
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	z-index: -1;
+}
+
+.input_label.input_file_custom:hover::before {
+	opacity: 1;
+}
+#file_name {
+	display: block;
+	font-size: 12px;
+	color: var(--text-very-light);
+}
+
+/* Estilo para campo apenas leitura */
+.input-disabled {
+	background-color: var(--background-color);
+	cursor: not-allowed;
+	color: var(--text-very-light);
+}
+
+.btn_save {
+	margin-top: 1.5rem;
+}
+
+.select_moeda option {
+	padding: 10px;
+	cursor: pointer;
+}
+.select_moeda option:hover {
+	background-color: var(--btn-primary);
+}

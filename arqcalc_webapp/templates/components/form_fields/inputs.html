@@ -1,0 +1,22 @@
+<!-- @format -->
+<!-- # EDITADO - ABRIL/2 -->
+
+{% load static %}
+
+<div class="form-group">
+	<label for="{{id_input}}" class="input_label {{class_aditinal}}">{{title}}</label>
+	<input
+		type="{{input_type}}"
+		id="{{id_input}}"
+		name="{{name_input}}"
+		value="{{value_input}}"
+		placeholder="{{input_placeholder}}"
+        class="form_input {{class_aditinal_input}}"
+		{% if disabled %}
+			disabled 
+			title="Não é possível editar este campo."
+		{% else %}
+			required 
+		{% endif %}
+		/>
+</div>

@@ -1,0 +1,60 @@
+<!-- EDITADO MAR-13 -->
+
+{% extends 'base_login.html' %}
+{% load static %}
+{% block title %}Login - ArqCalc{% endblock %}
+
+{% block login_header %}
+    <h1>Bem-vindo de volta à ArqCalc!</h1>
+    <p>Insira seus dados para continuar</p>
+
+    <!-- Exibe mensagens gerais -->
+    {% if messages %}
+        {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+
+        <!-- Usuário -->
+        <label for="username">E-mail</label>
+        <input
+            id="email" name="email" type="email"
+            placeholder="exemplo@email.com"
+            value="{{ email|default:'' }}"
+            class="{% if form.username.errors %}is-invalid{% endif %}"
+            required
+        >
+
+        <!-- Senha -->
+        <label for="password">Senha</label>
+        <div class="password-container">
+            <input
+                id="password" name="password" type="password"
+                placeholder="Senha"
+                class="{% if form.password.errors %}is-invalid{% endif %}"
+                required
+            >
+            <img src="{% static 'assets/view.png' %}" class="toggle-password" alt="Mostrar senha">
+        </div>
+        {% for error in form.password.errors %}
+            <small class="error-message">{{ error }}</small>
+        {% endfor %}
+
+        <!-- Botões -->
+        <div class="buttons">
+            <a href="{% url 'password_reset' %}" class="forgot-password">Esqueci a senha</a>
+            <button type="submit" class="login-button">Entrar</button>
+            <p>Não tem uma conta? <a href="{% url 'cadastro' %}">Cadastre-se</a></p>
+        </div>
+    </form>
+
+    
+    
+    <div class="support">
+        <p><a>Não recebi meus dados de acesso</a></p>
+    </div>
+    
+{% endblock %}

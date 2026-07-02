@@ -1,0 +1,18 @@
+<!-- EDITADO MAR-20 -->
+
+{% load static %}
+
+<div class="modal" id="modal_notification">
+    <div>
+		<button
+			type="button"
+			class="btn_close_modal_notification">
+			X
+		</button>
+	</div>
+    <div class="notification_header"><p>Notificações</p></div>
+    <div id="notifications-container" class="notification_messages_container">
+        <!-- O conteúdo será substituído pelo AJAX -->
+        {% include 'components/modals/modal_notifications_content.html' %}
+    </div>
+</div>

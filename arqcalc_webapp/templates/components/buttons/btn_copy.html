@@ -1,0 +1,14 @@
+<!-- @format -->
+
+{% load static %}
+<a
+	href="{% url 'novo_projeto' %}?modo=copy&id='{{row.id}}'"
+	class="ancor_decoration">
+	<button
+		type="button"
+		class="btn_hover">
+		<img
+			src="{% static 'assets/icons/copy.png' %}"
+			alt="COPY" />
+	</button>
+</a>

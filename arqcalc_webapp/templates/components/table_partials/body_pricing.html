@@ -1,0 +1,30 @@
+<!-- EDITADO - ABRIL/5 -->
+{% load static %} 
+
+<tbody class="{{ cfg_table.body_class.body|join:' ' }}">
+    {% for row in table_data %}
+        <tr class="row_body_costs {% if sale_table == 'true' %} {{ cfg_table.body_class.row|join:' ' }} {% endif %}" data-id="{{ row.id }}">
+            {% for cell in row.cells %}
+                <th class="{{ cfg_table.body_class.collumn|join:' ' }}">
+                    {# Verifica se é a célula de valor da linha 'Custo Fixo' #}
+                    {% if row.cells.0.value == "Custo Fixo" and forloop.counter == 2 %}
+                        <input type="text" 
+                               id="valor-total-custos-fixos" 
+                               class="input_table_disabled" 
+                               value="{{ cell.value }}" 
+                               readonly>
+                    {% else %}
+                        {{ cell.value }}
+                    {% endif %}
+                </th>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</tbody> 
+
+<template id="row-pricing-template">
+    <tr class="row_body_costs">
+        <th class="{{ cfg_table.body_class.collumn|join:' ' }}"></th> 
+        <th class="{{ cfg_table.body_class.collumn|join:' ' }}"></th> 
+    </tr>
+</template>

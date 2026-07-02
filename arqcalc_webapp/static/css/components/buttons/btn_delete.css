@@ -1,0 +1,25 @@
+/* EDITADO MAR-13 */
+
+.btn_delete, .btn_delete:hover, .btn_cancel, .btn_cancel:hover{
+	background-repeat:   no-repeat;
+	background-position: center;
+	object-fit:          contain;
+}
+
+.btn_delete, .btn_cancel{
+	background-color: var(--btn-primary);
+
+	width: 2.5rem; height: 2.5rem;
+	border: none; border-radius: 4px;
+	cursor: pointer;
+    transition: .2s;
+	/* margin: auto 0 auto auto; */
+}
+
+.btn_cancel:hover, .btn_delete:hover { 	background-color: var(--text-header); }
+
+.btn_delete {        background-image: url("../../../assets/icons/delete.png");       }
+.btn_delete:hover {  background-image: url("../../../assets/icons/delete_light.png"); }
+
+.btn_cancel{         font-size: 20px; font-weight: 700; }
+.btn_cancel:hover {  color: var(--primary-light);       }

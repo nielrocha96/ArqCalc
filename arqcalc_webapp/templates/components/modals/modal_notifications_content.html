@@ -1,0 +1,18 @@
+
+<!-- EDITADO MAR-20 -->
+{% load static %}
+
+{% for notification in notifications %}
+<div class="notification_messages">
+    <img src="{{ notification.image }}" alt="{{ notification.name }}" class="profile-img" />
+    <div>
+        <p>{{ notification.message }}</p>
+        <small>" {{ notification.name }} "</small> 
+    </div>
+    <hr/>
+</div>
+{% empty %}
+<div class="notification_messages">
+    <p>Nenhuma notificação nova.</p>
+</div>
+{% endfor %}

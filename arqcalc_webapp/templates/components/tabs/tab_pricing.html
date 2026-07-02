@@ -1,0 +1,64 @@
+<!-- # EDITADO - ABRIL/5 -->
+
+{% load static %} 
+{% load config_table %}
+<!-- PUXA AS CONFIGURAÇÕES DE HEAD DE TEMPLATETAGS  -->
+<!-- ATRIBUIR CLASSES E ATIVAÇÃO DE BOTÕES -->
+{% get_table_vars as cfg_table %} 
+
+<div class="tab-content" id="tab-preco">
+	<div id="precificacao">
+		<div class="precificacao-container">
+			<div class="precificacao-inputs">
+				<div class="inputs-container">
+					<div class="form-group">
+
+						<div id="container-custos-fixos">
+							{% include "components/form_fields/select_checkbox.html" with items_list=lista_custos_fixos title="selecionar custos fixos" label="Custos Fixos" id_input="custos_fixos" %}
+						</div>
+
+						
+					</div>
+
+					<div class="form-group">
+
+						<label for="comissoes_percent" class="input_label">Comissões</label>
+						<div class="input-com-simbolo">
+							<input
+								type       ="number"
+								step="0.01"
+								name       ="comissoes_percent "
+								id         ="comissoes_percent"
+								placeholder="0.00"
+								class      ="no_border"
+								value      ="{{ comissoes }}" />
+							<i class="icon-impostos">
+								<img src="{% static 'assets/icons/impostos_roxo.png' %}" alt="icon percent" />
+							</i>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div id="container-impostos">
+							{% include "components/form_fields/select_checkbox.html" with items_list=lista_impostos title="selecionar impostos" label="Impostos" id_input="impostos" %}
+						</div>
+					</div>
+
+					
+				</div>
+				<div class="precificacao-detalhes">
+
+					{% include 'components/table.html' with tab_ativa='preco' table_id='tabela-custos' title_head='Composição do preço final' isInput='false' table_body=preco table_cfg=cfg_table.preco class_aditional='table_costs' %}	
+
+					{% include 'components/table.html' with tab_ativa='preco' table_id='tabela-precificacao' title_head='Preço de venda' isInput='true' table_sale='true' table_body=preco table_cfg=cfg_table.preco class_aditional='table_pricing' %}
+				</div>
+
+		
+			</div>
+		</div>
+	</div>
+</div>
+
+{% block extra_js %}
+  <script src="{% static 'js/components/tabs/tab_pricing.js' %}" type="module"></script>
+{% endblock %}

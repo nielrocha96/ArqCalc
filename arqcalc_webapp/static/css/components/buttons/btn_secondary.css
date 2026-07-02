@@ -1,0 +1,20 @@
+/* EDITADO MAR-13 */
+
+/* --- BOTÕES DA TELA DE CUSTOS --- */
+.btn_secondary {
+	display: inline-flex;
+	margin: 2rem 0 0 1rem;
+	padding: 12px 24px;
+	gap: 0.5rem;
+
+	align-items: center;
+	background-color: var(--primary-color);
+	
+	border: none; border-radius: 8px;
+	font-size: 16px; font-weight: 500; 	color: var(--white);
+	
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+.btn_secondary:hover { background-color: #5545b6; } /* Um tom mais escuro do --primary-color */

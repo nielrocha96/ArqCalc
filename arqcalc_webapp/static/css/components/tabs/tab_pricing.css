@@ -1,0 +1,72 @@
+/**
+ * EDITADO aBRIL/5
+ *
+ * @format
+ */
+
+.precificacao-container {
+	padding-top: 2rem;
+} /* Espaçamento abaixo das abas */
+.precificacao-inputs {
+	display: flex;
+	flex-direction: column;
+}
+
+.inputs-container {
+	display: flex;
+	margin-bottom: 2rem;
+	gap: 2rem;
+}
+
+/* Estilo para o input com o símbolo de % dentro */
+.input-com-simbolo {
+	display: flex;
+	max-height: 36px;
+	width: fit-content;
+	padding: 0.5rem;
+	align-items: center;
+
+	border: 1px solid var(--border-color);
+	border-radius: 6px;
+
+	background-color: var(--white);
+	transition:
+		border-color 0.2s,
+		box-shadow 0.2s;
+}
+
+.input-com-simbolo input {
+	width: 100%;
+	padding: 2px 4px;
+	background: transparent;
+	border: none;
+	outline: none;
+	font-size: 1rem;
+}
+
+.no_border {
+	border: none !important;
+}
+
+.input-com-simbolo span {
+	padding-right: 12px;
+	color: var(--text-light);
+	font-size: 15px;
+	font-weight: 500;
+}
+.icon-impostos {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	height: 1.5rem;
+	width: 1.5rem;
+	padding: 2px 2px 2px 0;
+	background-color: var(--btn-primary);
+	border-radius: 4px;
+}
+
+.precificacao-detalhes {
+	display: flex;
+	gap: 2rem;
+	align-items: start;
+}

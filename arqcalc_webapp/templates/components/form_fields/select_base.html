@@ -1,0 +1,63 @@
+<!-- # EDITADO - ABRIL/2
+ -->
+
+{% load static %}
+{% load config_table %}
+
+<div class="form-group">
+    {% if label %}
+    <label for="{{ name_input }}" class="input_label {{ class_aditinal }}">
+        {{ label|default:"" }}
+    </label>
+    {% endif %}
+    
+
+    <div class="{% if list_config.select.class %}{{ list_config.select.class|join:' ' }}{% endif %}" 
+         id="{{ list_config.select.id }}">
+        
+        <button type="button" 
+            class="{% if list_config.button.class %}{{ list_config.button.class|join:' ' }}{% endif %} 
+            {% if 'select_item_status' in list_config.select.class %}
+                {% if value_input %}
+                    status-{{ value_input|slugify }}
+                {% elif 'selected_item_status' in list_config.button.class %}
+                    status-em-andamento
+                {% endif %}
+            {% endif %}" 
+            {% if not list_content %}
+                disabled='true'
+                title="Adicione profissionais na aba 'Profissionais' para habilitar"
+            {% endif %}>
+            
+            <span>
+                {% if value_input %}
+                   {{ value_input}}
+                {% else %}
+                    {{ title }}
+                {% endif %}
+            </span>
+            
+                    
+            {% if arrow_drop_down == 'true' %}
+                <img src="{% static 'assets/icons/arrow_drop_down.png' %}" class="arrow_icon" alt="arrow drop down" >
+            {% endif %}
+        </button>
+
+        <ul class="{% if list_config.list.class %}{{ list_config.list.class|join:' ' }}{% endif %}">
+        
+            
+            {% if list_content %}
+                {% for content in list_content %}
+                    {% with current_val=list_config.item.data_value|get_item:content %}
+                    <li data-value="{{ current_val }}" 
+                        class="status-{{ current_val }} {% if value_input == current_val %}active selected{% endif %}">
+                        {{ content }}
+                    </li>
+                    {% endwith %}
+                {% endfor %}
+            {% endif %}
+        </ul>
+
+        <input type="hidden" name="{{ name_input }}" id="{{ id_input }}" value="{{ value_input }}" required/> 
+    </div>
+</div>

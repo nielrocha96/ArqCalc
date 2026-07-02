@@ -1,0 +1,15 @@
+<!-- EDITADO MAR-13 -->
+{% load static %}
+
+
+{% if  request.resolver_match.url_name == 'projetos' %}
+<a href="{% url 'novo_projeto' %}?modo=edit&id='{{row.id}}'" class="ancor_decoration">
+	<button type="button" class="btn_edit">
+        <!-- <img src="{% static 'assets/icons/edit.png' %}" alt="edit"> -->
+    </button>
+</a>
+
+{% else %}
+	<button type="button" class="btn_edit" >
+	</button>
+{% endif %}

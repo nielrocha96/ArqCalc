@@ -1,0 +1,26 @@
+<!-- EDITADO MAR-25 -->
+
+{% load static %}
+
+<table class="table {{ class_aditional}}" id="table_{{ request.resolver_match.url_name }} ">
+
+	<!--  ADICIONA HEAD E BODY DA TABELA NA TELA NOVO_PROJETO PARA TAB PRECIFICAÇÃO-->
+	{% if tab_ativa == 'preco' %}
+
+		{% include 'components/table_partials/head_pricing.html' with title=title_head input=isInput btn_class=btn_class_aditional %}
+
+		{% include 'components/table_partials/body_pricing.html' with sale_table=table_sale table_data=table_body cfg_table=table_cfg %}
+		
+	{% else %}
+		<!--  ADICIONA HEAD E BODY DA TABELA NAS TELAS -->
+		{% include 'components/table_partials/table_head_base.html'  with table_header=headers cfg_table=table_cfg tab=isTab class_add=class_aditional btn_class=btn_class_aditional %} 
+		
+		{% include 'components/table_partials/table_body_base.html' with table_header=headers table_data=data_table  cfg_table=table_cfg tab=isTab class_add=class_aditional %}
+	{% endif %}
+
+</table>
+
+<!--  ADICIONA PAGINAÇÃO NA TELA -->
+{% if request.resolver_match.url_name != 'novo_projeto' %}
+	{% include 'components/pagination.html' with page_obj=page_obj %}
+{%endif%}

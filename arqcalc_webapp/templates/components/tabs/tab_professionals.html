@@ -1,0 +1,14 @@
+<!-- EDITADO MAR-13 -->
+{% load static %} 
+{% load config_table %}
+<!-- PUXA AS CONFIGURAÇÕES DE HEAD DE TEMPLATETAGS  -->
+<!-- ATRIBUIR CLASSES E ATIVAÇÃO DE BOTÕES -->
+{% get_table_vars as cfg_table %} 
+
+<div class="tab-content" id="tab-profissional">
+
+	{% include 'components/table.html' with headers=tab_config.profissional.headers data_table=profissional isTab='true' table_cfg=cfg_table.profissional %}
+
+    {% include 'components/buttons/btn_secondary.html' with btn='btn_primary_dark' btn_class='add-profissional-btn' title='Adicionar profissional' %} 
+
+</div>

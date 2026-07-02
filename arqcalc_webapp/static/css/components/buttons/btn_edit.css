@@ -1,0 +1,21 @@
+/* EDITADO MAR-13 */
+
+.btn_edit{
+    height: 28px;
+    width: 28px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 2px;
+    transition: .2s;
+    background-image: url('../../../assets/icons/edit.png');
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    object-fit: contain;
+
+    &:hover{
+        background-color: var(--btn-primary);
+    }
+}

@@ -1,0 +1,123 @@
+/* EDITADO aBRIL/5
+  select_checkbox.css
+ 
+  @format
+ */
+
+/* Container da lista (UL) */
+.select_list {
+	display: none; /* Escondido por padrão, JS controla */
+	flex-direction: column;
+	padding: 8px 0;
+	margin: 4px 0;
+	list-style: none;
+	max-height: 250px; /* Opcional: Limita altura com scroll */
+    width: 250px;
+    max-width: 250px;
+	overflow-y: auto;
+}
+
+/* Item da lista (LI) */
+.select_item_checkbox {
+	padding: 0;
+	transition: background 0.2s;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+
+.select_item_checkbox:hover {
+	background-color: var(--background-color);
+}
+
+.select_item_checkbox label.checkbox {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 8px 12px;
+	width: 100%;
+	margin-bottom: 0;
+	cursor: pointer;
+}
+
+/* Estilo do texto */
+.select_item_checkbox .item_label {
+	font-size: 14px;
+	color: var(--text-color);
+	line-height: 1;
+}
+
+/* --- ESTILIZAÇÃO DO CHECKBOX CUSTOMIZADO --- */
+
+/* Esconde o input original mas mantém acessibilidade */
+.select_item_checkbox label.checkbox input {
+	position: absolute;
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
+}
+
+/* O quadrado do checkbox (checkmark) */
+.select_item_checkbox label.checkbox .checkmark {
+	width: 18px;
+	height: 18px;
+	border: 2px solid var(--primary-color);
+	border-radius: 4px;
+	background-color: var(--background-color);
+	position: relative;
+	transition: all 0.2s;
+	display: inline-block; /* Garante tamanho correto */
+}
+
+/* Imagem do check (correct.png) */
+.select_item_checkbox label.checkbox img {
+	position: absolute;
+	width: 12px; /* Ajuste o tamanho da imagem */
+	height: 12px;
+	/* Centraliza a imagem dentro do label (que é relative) relativa ao checkmark */
+	left: 15px; /* Ajuste fino baseado no padding do label + metade do checkmark */
+	top: 50%;
+	transform: translateY(-50%) scale(0); /* Escondida e pequena por padrão */
+	transition: transform 0.2s ease-in-out;
+	pointer-events: none; /* Clique passa para o label */
+	z-index: 1;
+}
+
+/* --- ESTADOS QUANDO MARCADO (CHECKED) --- */
+
+/* Altera a borda e fundo do quadrado */
+.select_item_checkbox label.checkbox input:checked ~ .checkmark {
+	border-color: var(--primary-color);
+	background-color: var(--primary-color);
+}
+
+/* Mostra a imagem do check com animação de escala */
+.select_item_checkbox label.checkbox input:checked ~ img {
+	transform: translateY(-50%) scale(1); /* Exibe no tamanho normal */
+}
+
+/* --- ESTADOS DO CONTAINER (OPEN) --- */
+
+/* Exibe a lista quando o container está aberto */
+.select_checkbox_container.open .select_list {
+	display: flex !important;
+}
+
+/* Rotaciona a seta */
+.select_checkbox_container.open .arrow_icon {
+	transform: rotate(180deg);
+}
+
+.select_item_checkbox label.checkbox {
+	position: relative; /* Necessário para posicionar a imagem absoluta */
+}
+
+.select_item_checkbox label.checkbox img {
+	/* Reposicionando para alinhar perfeitamente sobre o .checkmark */
+	left: 15px; /* Padding left (12px) + ajuste (3px) para centralizar no checkmark de 18px */
+}
+
+.disabled{
+	cursor: default;
+}

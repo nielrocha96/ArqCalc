@@ -1,0 +1,86 @@
+<!-- @format -->
+
+<!-- EDITADO MAR-17 -->
+
+{% extends 'base_geral.html' %} 
+{% load static %} 
+{% load config_table %} 
+
+{% block links_css %}
+<link
+	rel="stylesheet"
+	href="{% static 'css/projetos.css' %}?v=1" />
+{% endblock %} 
+
+{% block banner %}
+  <!--  ADICIONA TOPBAR NA TELA -->
+  {% include 'components/topbar.html' with title=screen %}
+  {% if banner == 'True' %}
+		{% include 'components/banner/banner.html' %}
+	{% endif %}
+
+  <form
+    class="novo_projeto_form"
+    method="post"
+    action="{% url 'novo_projeto' %}">
+    {% csrf_token %}
+
+    <div class="tabs_bar">
+      <div
+        class="tab active"
+        data-tab="prospeccao">
+        Prospecção
+      </div>
+      <div
+        class="tab "
+        data-tab="dados">
+        Dados
+      </div>
+      <div
+        class="tab"
+        data-tab="custo">
+        Custos Específicos
+      </div>
+      <div
+        class="tab"
+        data-tab="profissional">
+        Profissionais
+      </div>
+      <div
+        class="tab"
+        data-tab="etapa">
+        Etapas
+      </div>
+      <div
+        class="tab"
+        data-tab="resumo">
+        Resumo do Projeto
+      </div>
+      <div
+        class="tab"
+        data-tab="preco">
+        Precificação
+      </div>
+    </div>
+
+    {% include 'components/tabs/tab_prospecting.html' %}
+    {% include 'components/tabs/tab_data_form.html' %}
+    {% include 'components/tabs/tab_cost.html' %}
+    {% include 'components/tabs/tab_professionals.html' %}
+    {% include 'components/tabs/tab_phases.html' %}
+    {% include 'components/tabs/tab_summary.html' %}
+    {% include 'components/tabs/tab_pricing.html' %}
+
+    <div class="form-row align_right">
+		 {% include 'components/buttons/btn_secondary.html' with button_type='submit' button_id='save_data_btn' btn_class='btn_primary_dark btn_save' title='Salvar dados' %}
+	  </div>
+
+    <div class="modal_confirmation_container" id="modal_confirmation_container">
+      {% include 'components/modals/modal_confirmation.html' %}
+    </div>
+  </form>
+{% endblock %} 
+
+{% block extra_js %}
+  <script src="{% static 'js/projetos.js' %}" type="module"></script>
+{% endblock %}

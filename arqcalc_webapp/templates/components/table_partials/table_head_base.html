@@ -1,0 +1,64 @@
+<!-- EDITADO ABRIL/10 -->
+{% load static %} 
+{% if not tab %}
+	{% load config_table %}
+	<!-- PUXA AS CONFIGURAÇÕES DE HEAD DE TEMPLATETAGS  -->
+	<!-- ATRIBUIR CLASSES E ATIVAÇÃO DE BOTÕES -->
+	{% get_table_vars as cfg_table %} 
+{% endif %}
+
+<!-- HEAD PRINCIPAL UTILIZADO PARA A MAIORIA DAS TABELAS -->
+<thead class="{{cfg_table.head_class.head|join:' ' }} ">
+	<tr class="{{cfg_table.head_class.row|join:' ' }} ">
+		<th class="checkbox_collumn_head">
+			{% if cfg_table.head.checkbox == 'true' %}
+				{% include 'components/buttons/btn_checkbox.html' with idItem='checkbox_head' class='' %}
+			{% endif %} 
+		</th>
+
+		{% for collumn in table_header %}
+			<th class="{% if collumn|lower == 'início' or collumn|lower == 'fim' %} date_heade_collumn {% elif collumn|lower == 'status' %} status_heade_collumn {% else %} content_collumn_head {% endif %}">
+				{% if "VALOR" == collumn or "CUSTO" == collumn  or "Custo" == collumn %}
+
+					{% if cfg_table.head.order_by == 'true' %}
+						<span class="order_by" data-column="{{ collumn|slugify }}">
+							{{ collumn }} (<span class="currency-symbol">R$</span>)
+							<img src="{% static 'assets/icons/arrow_drop_down.png' %}" alt="seta de orientção da ordenação" class="order_by_icon">
+						</span>
+					{% else %}
+						</span>{{ collumn }} (<span class="currency-symbol">R$</span>)
+					{% endif %}
+
+				{% else %}
+					
+					{% if cfg_table.head.order_by == 'true' %}
+						<span class="order_by" data-column="{{ collumn|slugify }}">
+							{{ collumn }}
+							<img src="{% static 'assets/icons/arrow_drop_down.png' %}" alt="seta de orientção da ordenação" class="order_by_icon">
+						</span>
+					{% else %}
+						{{ collumn }}
+					{% endif %}
+				{% endif %}
+			</th>
+		{% endfor %} 
+
+		<th class="action_collumn_head">
+			{% if cfg_table.head.copy == 'true' %}
+				<button 
+				type="button" 
+				class="btn_copy"
+				data-url="{% if request.resolver_match.url_name == 'projetos' %}/projetos/{% elif request.resolver_match.url_name == 'novo_projeto' %}/novo_projeto/{% elif request.resolver_match.url_name == 'custos_fixos' %}/custos_fixos/{% else %}/impostos/{% endif %}"
+				>
+					<img
+						src="{% static 'assets/icons/copy.png' %}"
+						alt="COPY" />	
+				</button>			
+			{% endif %}
+
+			{% if cfg_table.head.delete == 'true' %}
+				{% include 'components/buttons/btn_delete.html' with btn_class_additional=btn_class %}
+			{% endif %}
+		</th>
+	</tr>
+</thead>

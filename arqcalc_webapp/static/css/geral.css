@@ -1,0 +1,134 @@
+/** @format */
+/* EDITADO ABRIL/11 */
+
+@import "variables.css";
+
+/* BUTTONS */
+@import "components/buttons/btn_notification.css"; 
+@import "components/buttons/btn_primary.css";
+@import "components/buttons/btn_secondary.css";
+@import "components/buttons/btn_checkbox.css";
+@import "components/buttons/btn_delete.css";
+@import "components/buttons/btn_edit.css";
+@import "components/buttons/btn_pdf.css";
+
+/* FORM FIELDS */
+@import "components/form_fields/select_base.css";
+@import "components/form_fields/select_checkbox.css";
+
+@import "components/pagination.css";
+
+/* MODALS  */
+@import "components/modals/modal_notifications.css";
+@import "components/modals/modal_confimation.css";
+@import "components/modals/modal_filters.css";
+@import "components/modals/modal_new_costs.css";
+@import "components/banner/banner.css";
+ 
+/* TABS */
+@import "components/topbar.css";
+@import "components/validate_fields.css";
+@import "components/tabs/tab_phases.css";
+@import "components/tabs/tab_pricing.css";
+@import "components/tabs/tab_prospecting.css";
+
+/* Tabelas */
+@import "components/table_partials/table_head_base.css";
+@import "components/table_partials/table_body_base.css";
+
+@import "./projetos.css";
+
+* {box-sizing: border-box; margin: 0; padding: 0;}
+
+html, body { height: 100%; }
+
+body {
+	display: grid;
+	grid-template-columns: auto 1fr; /* sidebar | conteúdo */
+	grid-template-rows: 100%;
+	font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Roboto", "Helvetica Neue", Arial, sans-serif;
+	font-size: 16px;
+}
+
+.main-content {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	background-color: var(--background-color);
+	width: 88%;
+	margin: 2rem auto 2rem auto;
+	overflow-y: auto;
+	transition: all 0.3s ease;
+}
+
+.active{
+	display: flex;
+}
+
+.active_modal {
+	display: block;
+	height: 19rem;
+	width: 24rem;
+    background-color: var(--background-color);
+	transition: 0.3s;
+}
+
+.active_content{display: block; flex-direction: column; }
+
+/*_____________________________________________________ */
+/*          CAMPO DE BUSCA / FILTRO / BUTTON                           */
+/*_____________________________________________________ */
+
+.actions-bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+.search-bar {
+	position: relative;  
+	width: 400px;        
+}
+
+.search-bar input {
+	width: 100%;
+	padding: 8px 35px 8px 10px;  
+	border: 1px solid var(--border-color);
+	border-radius: 5px;
+	box-sizing: border-box;
+}
+
+.search-bar .search-icon {
+	position: absolute;
+	right: 10px;  
+	top: 50%;  
+	transform: translateY(-50%);
+	width: 20px;  
+	height: 20px;
+	cursor: pointer;  
+}
+
+.actions-buttons { display: flex; }
+
+/*_____________________________________________________ */
+/*                    TABELAS  */
+/*_____________________________________________________ */
+
+#table-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	flex: 1;
+	min-width: 600px;
+}
+
+.table {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin-bottom: 2rem;
+	
+}

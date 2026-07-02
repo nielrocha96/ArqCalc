@@ -1,0 +1,189 @@
+
+<!-- # EDITADO - ABRIL/11
+ -->
+
+{% load static %}
+{% if not tab %}
+	{% load config_table %}
+
+	<!-- PUXA AS CONFIGURAÇÕES DE HEAD DE TEMPLATETAGS  -->
+	<!-- ATRIBUIR CLASSES E ATIVAÇÃO DE BOTÕES -->
+	{% get_table_vars as cfg_table %} 
+
+{% endif %}
+
+<tbody class="{{cfg_table.body_class.body|join:' ' }}">
+	
+		{% for row in table_data %}
+			<tr class="{{cfg_table.body_class.row|join:' ' }}"  data-id="{{ row.id }}">
+				<th class="checkbox_collumn_body">
+					{% if cfg_table.body.checkbox == 'true' %}
+						{% include 'components/buttons/btn_checkbox.html' with idItem='checkbox_body' classItem='row_checkbox' %}
+					{% endif %} 
+				</th>
+				
+				{% for cell in row.cells %}
+					<th class="{{class_add}} {% if cell.is_end_date %} end_date_body_collumn {% elif cell.is_start_date %} start_date_body_collumn {% else %} {{ cfg_table.body_class.collumn|join:' ' }} {% endif %}">
+						{% if cell.is_status %}
+							<!-- UTILIZA VALOR DO STATUS PARA DIFINIR CLASSE -->
+
+							<span class="status status-{{ cell.value|slugify }}">
+								{{ cell.value }}
+							</span>
+						{% else %}
+
+							
+							<!-- FORMATAÇÃO DO CONTEUDO PARA TELA ( NOVO PROJETO ) -->
+							{% if request.resolver_match.url_name == 'novo_projeto' %}
+
+								<!-- PARA TABELAS COM INPUT -->
+								{% if cell.name == 'responsible' %}
+
+									{% include 'components/form_fields/select_base.html' with label='' title='Responsável' id_input='' name_input='responsible' list_config=cfg_table.lists.content.professional_phase arrow_drop_down='true' %}
+							
+
+								{% elif cell.name == 'total_item' or 'value_hour' in cell.name|lower or 'cost_value' in cell.name|lower %}
+										
+									<input type="text" 
+											name="{{ cell.name }}" 
+											value=" {{ cell.value|default:'0,00' }}" 
+											class="{{ cfg_table.body_class.cell|join:' ' }} currency-input" 
+											data-currency="{{ user_currency_iso|default:'BRL' }}"
+											{% if cell.name == 'total_item' %}
+											disabled 
+											{% else %}
+											required
+											{% endif %}
+											/>
+
+								{% elif cell.name == 'time'  %}
+									<input type="time" 
+										name="{{ cell.name }}" 
+										value="{{ cell.value }}" 
+										class="{{ cfg_table.body_class.cell|join:' ' }}"
+										required />
+								
+								
+								{% else %}
+									<input type="text" 
+									name="{{ cell.name }}" 
+									value="{{ cell.value }}" 
+									class="{{ cfg_table.body_class.cell|join:' ' }}"
+									required />
+									
+								{% endif %}
+
+							{% elif request.resolver_match.url_name == 'custos_fixos'%}
+
+								{% if cell.name == 'value' %}
+									<span class="currency-format">{{ cell.value }}</span>
+								{% else %}
+									{{ cell.value }}
+								{% endif %}
+
+							{% else %}
+
+								<!-- TABELAS PADRÃO -->
+								{{ cell.value }} 
+
+							{% endif %}
+
+						{% endif %}
+					</th>
+				{% endfor %}
+
+				{% if create == 'true' %}
+					<!-- Adicionar uma classe de acordo com o id do projeto, para ser unica e regatar ao clicar no botão editar e adicionar estilo de display none -->
+					
+					<th class="action_collumn_body">
+						
+					</th>
+				{% else  %}
+					
+					
+					
+					<th class="action_collumn_body">
+						{% if cfg_table.body.edit == 'true' %}
+							{% include 'components/buttons/btn_edit.html' %}
+						{% endif %} 
+						
+						{% if cfg_table.body.copy == 'true' %}
+							{% include 'components/buttons/btn_copy.html' %}
+						{% endif %}
+						
+						{% if cfg_table.body.pdf == 'true' %}
+							{% include 'components/buttons/btn_pdf.html' with data_id=row.id %}
+						{% endif %}
+					</th>
+
+				{% endif %}
+
+			</tr>
+		{% endfor %}
+	
+</tbody>
+
+<template id="row-body-template">
+    <tr class="{{ cfg_table.body_class.row|join:' ' }}">
+        {% if cfg_table.body.checkbox == 'true' %}
+            <th class="checkbox_collumn_body">
+                {% include 'components/buttons/btn_checkbox.html' with idItem='checkbox_body' classItem='row_checkbox' %}
+            </th>
+        {% endif %} 
+
+        {# Itera sobre o primeiro item do table_data para descobrir os campos (field_mapping) #}
+        {% with first_row=table_data.0 %}
+            {% for cell in first_row.cells %}
+                <th class="{{ cfg_table.body_class.collumn|join:' ' }}">
+                    {% if request.resolver_match.url_name == 'novo_projeto' %}
+
+							<!-- PARA TABELAS COM INPUT -->
+						{% if cell.name == 'responsible' %}
+
+							{% include 'components/form_fields/select_base.html' with label='' title='Responsável' id_input='' name_input='responsible' list_config=cfg_table.lists.content.professional_phase arrow_drop_down='true' %}
+					
+
+						{% elif cell.name == 'total_item' or 'value_hour' in cell.name|lower or 'cost_value' in cell.name|lower %}
+									
+							<input type="text" 
+									name="{{ cell.name }}" 
+									value=" {{ cell.value|default:'0,00' }}" 
+									class="{{ cfg_table.body_class.cell|join:' ' }} currency-input" 
+									data-currency="{{ user_currency_iso|default:'BRL' }}"
+									{% if cell.name == 'total_item' %}
+									  disabled 
+									{% else %}
+									  required
+									{% endif %}
+									   />
+						{% elif cell.name == 'time'  %}
+							<input type="time" 
+								name="{{ cell.name }}" 
+								value="{{ cell.value }}" 
+								class="{{ cfg_table.body_class.cell|join:' ' }}"
+								required />
+						
+						{% else %}
+							<input type="text" 
+							name="{{ cell.name }}" 
+							value="{{ cell.value }}" 
+							class="{{ cfg_table.body_class.cell|join:' ' }}" 
+							required/>
+						{% endif %}
+					
+
+					{% else %}
+
+						<!-- TABELAS PADRÃO -->
+						{{ cell.value }} 
+
+					{% endif %}
+                </th>
+            {% endfor %}
+        {% endwith %}
+
+        <th class="action_collumn_body">
+            {# Espaço para ações futuras ou botões de exclusão de linha temporária #}
+        </th>
+    </tr>
+</template>

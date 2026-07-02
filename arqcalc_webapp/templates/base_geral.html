@@ -1,0 +1,137 @@
+<!-- EDITADO MAR-13 -->
+
+{% load static %}
+<!doctype html>
+<html lang="pt-BR">
+	<head>
+		{% block head %}
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>{% block title %}ArqCalc{% endblock %}</title>
+		<link rel="icon" type="image/x-icon" href="{% static 'assets/favicon.ico' %}" />
+
+		<script defer src="{% static 'js/htmx.min.js' %}"></script>
+		<script defer src="{% static 'js/main.js' %}" type="module" ></script>
+
+		<link rel="stylesheet" href="{% static 'css/geral.css' %}" />
+		<link rel="stylesheet" href="{% static 'css/sidebar.css' %}" />
+
+		{% block links_css %}{% endblock %} {% endblock %}
+	</head>
+	<body data-page="{{ request.resolver_match.url_name }}">
+		<div class="sidebar">
+			<div>
+				<!-- Botão de recolher/expandir -->
+				<button id="toggleSidebar" class="toggle-btn">
+					<img id="toggleIcon" src="{% static 'assets/icons/collapse.png' %}" alt="Menu" />
+				</button>
+
+				<div class="container_logo">
+					<img src="{% static 'assets/logo.png' %}" alt="Logo" class="logo" />
+				</div>
+
+				<div class="nav-buttons">
+					<a href="{% url 'projetos' %}" class="nav-button {% if '/projetos/' in request.path %}active{% endif %}">
+						<div class="button-content">
+							<img
+								src="{% static 'assets/icons/projetos_' %}{% if '/projetos/' in request.path %}rosa{% else %}branco{% endif %}.png"
+								alt="Projetos"
+								class="button-icon" />
+							<span class="button-text">Projetos</span>
+						</div>
+					</a>
+
+					<a href="{% url 'dashboard' %}" class="nav-button {% if '/dashboard/' in request.path %}active{% endif %}">
+						<div class="button-content">
+							<img
+								src="{% static 'assets/icons/dashboard_' %}{% if '/dashboard/' in request.path %}rosa{% else %}branco{% endif %}.png"
+								alt="Dashboard"
+								class="button-icon" />
+							<span class="button-text">Dashboard</span>
+						</div>
+					</a>
+
+					<a href="{% url 'custos_fixos' %}" class="nav-button {% if '/custos_fixos/' in request.path %}active{% endif %}">
+						<div class="button-content">
+							<img
+								src="{% static 'assets/icons/custos_' %}{% if '/custos_fixos/' in request.path %}rosa{% else %}branco{% endif %}.png"
+								alt="Custos Fixos"
+								class="button-icon" />
+							<span class="button-text">Custos Fixos</span>
+						</div>
+					</a>
+
+					<a href="{% url 'impostos' %}" class="nav-button {% if '/impostos/' in request.path %}active{% endif %}">
+						<div class="button-content">
+							<img
+								src="{% static 'assets/icons/impostos_' %}{% if '/impostos/' in request.path %}rosa{% else %}branco{% endif %}.png"
+								alt="Impostos"
+								class="button-icon" />
+							<span class="button-text">Impostos</span>
+						</div>
+					</a>
+				</div>
+			</div>
+
+			<div class="footer-buttons">
+				
+
+				<a href="{% url 'configuracoes' %}" class="nav-button {% if '/configuracoes/' in request.path %}active{% endif %}">
+					<div class="button-content">
+						<img
+							src="{% static 'assets/icons/settings_' %}{% if '/configuracoes/' in request.path %}rosa{% else %}branco{% endif %}.png"
+							alt="Configurações"
+							class="button-icon" />
+						<span class="button-text">Configurações</span>
+					</div>
+				</a>
+
+				<form method="POST" action="{% url 'logout' %}">
+					{% csrf_token %}
+					<button
+						type ="submit"
+						class="footer-button"
+						style="background: none; border: none; padding: 0">
+						
+						<div class="button-content">
+							<img
+								src="{% static 'assets/icons/logout_branco.png' %}"
+								alt="Sair"
+								class="button-icon" />
+							<span class="button-text">Sair</span>
+						</div>
+						
+					</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="main-content" id="main-content">
+			{% block banner %}{% endblock %}
+		</div>
+		{% if request.resolver_match.url_name != 'novo_projeto' %}
+			{% include 'components/modals/modal_filter.html' %}
+		{% endif %}
+
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				const sidebar    = document.querySelector(".sidebar");
+				const toggleBtn  = document.getElementById("toggleSidebar");
+				const toggleIcon = document.getElementById("toggleIcon");
+				const logoImg    = document.querySelector(".logo");
+
+				toggleBtn.addEventListener("click", () => {
+					sidebar.classList.toggle("collapsed");
+					toggleBtn.classList.toggle("rotated");
+
+					if (sidebar.classList.contains("collapsed")) { logoImg.src = "{% static 'assets/favicon-32x32.png' %}"; }
+					else {                                         logoImg.src = "{% static 'assets/logo.png' %}"; }
+				});
+			});
+		</script>
+
+		{% block extra_js %}{% endblock %} 
+	
+	</body>
+</html>

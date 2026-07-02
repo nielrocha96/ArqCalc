@@ -1,0 +1,134 @@
+/* EDITADA ABRIL/09 */ 
+
+/*#####################################################################
+				PROJECT
+#####################################################################*/
+
+.table_head { border-bottom: 1px solid var(--border-dark); flex: 1; }
+
+.row_head_table {
+	display: flex;
+	padding: 0.5rem 1rem;
+	align-items: center; justify-content: space-between;
+	white-space: nowrap;
+}
+.row_head_table th {
+	color: var(--text-header); font-size: 1rem; font-weight: 700;
+	letter-spacing: 0;	
+}
+
+.content_collumn_head {
+	text-align: left; text-wrap: wrap;
+	min-width: 10rem; max-width: 10rem;
+	flex: 1;
+}
+
+.date_heade_collumn    { text-align: center; min-width: 10rem; max-width: 10rem; }
+.status_heade_collumn  { text-align: center; min-width: 10rem; max-width: 10rem; }
+
+.checkbox_collumn_head { height: 20px; width: 20px; }
+
+.action_collumn_head {
+	display: flex;
+	gap: 10px;
+	min-width: 10rem; max-width: 10rem;
+	align-items: center; justify-content: end;
+}
+
+.projects-table tbody tr:last-child td { border-bottom: none; }
+
+/*#####################################################################
+				New Project
+#####################################################################*/
+
+/* TAB - ETAPA */
+.row_head_primary { background-color: var(--primary-light); }
+
+/* TAB - Resumo */
+.table_head_primary { border-top: 1px solid var(--border-dark); border-bottom: 1px solid var(--border-dark); }
+
+/* ESTILOS ABAIXO NÃO FUI EU QUEM CRIEI, ANALISAR O QUE DER PARA USAR E EXLUIR O QUE NÃO */
+#status {
+	height: 40px; width: 100%;
+	padding: 10px;
+	
+	background-color: var(--white);
+	border: 1px solid var(--border-color); border-radius: 6px;
+	
+	cursor: pointer;
+	color: var(--text-color); font-size: 15px;
+	
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
+	background-image: url('data:image/svg+xml;charset=UTF-8,<svg fill="%23888888" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	background-size: 20px;
+}
+
+#status option {
+	margin: 5px 0; padding: 10px;
+
+	font-size: 15px;
+	white-space: nowrap;
+	box-sizing: border-box;
+}
+
+#status option[value="em_andamento"] {background-color: var(--status-andamento-bg);  color: var(--status-andamento-text); }
+#status option[value="em_espera"]    {background-color: var(--status-aguardando-bg); color: var(--status-aguardando-text);}
+#status option[value="concluido"]    {background-color: var(--status-aprovado-bg);   color: var(--status-aprovado-text);  }
+#status option[value="cancelado"]    {background-color: var(--status-reprovado-bg);  color: var(--status-reprovado-text); }
+
+.status-select-em_andamento {background-color: var(--status-em-andamento-bg); color: var(--status-em-andamento-text);}
+.status-select-em_espera    {background-color: var(--status-aguardando-bg);   color: var(--status-aguardando-text);  }
+.status-select-concluido    {background-color: var(--status-aprovado-bg);     color: var(--status-aprovado-text);    }
+.status-select-cancelado    {background-color: var(--status-reprovado-bg);    color: var(--status-reprovado-text);   }
+
+.action-icons {text-align: center;}
+
+.action-icons i {
+	margin: 0 8px;
+	color: var(--text-light);
+	cursor: pointer;
+	transition: color 0.3s;
+}
+
+.action-icons i:hover { color: var(--primary-color); }
+
+.btn_copy {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 40px; 
+	width: 40px;
+	border: none; border-radius: 4px;
+	background-color: transparent;
+	cursor: pointer;
+	transition: background-color 0.2s;
+}
+.btn_copy:hover { 
+	background-color: var(--btn-primary); 
+}
+
+
+.order_by {
+    display: flex;
+    align-items: center;
+	cursor: pointer;
+}
+.order_by.active {
+	color: var(--primary-color); /* Ou a cor de destaque do seu tema */
+}
+
+.order_by_icon {
+	display: block;       
+	object-fit: contain;
+	transition: transform 0.3s ease;
+	
+}
+
+.rotate-180 {
+    transform: rotate(180deg);
+}

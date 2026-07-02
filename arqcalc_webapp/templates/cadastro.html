@@ -1,0 +1,48 @@
+<!-- EDITADO MAR-13 -->
+
+{% extends 'base_login.html' %}
+{% load static %}
+{% block title %}Cadastro - ArqCalc{% endblock %}
+
+{% block login_header %}
+    <h1>Bem-vindo à ArqCalc!</h1>
+    <p>Cadastre-se para continuar</p>
+
+    <!-- Formulário Django -->
+    <form method="POST" action="{% url 'cadastro' %}">
+        {% csrf_token %}
+
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <p class="{{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <!-- E-mail -->
+        <label for="email">E-mail do usuário</label>
+        <input id="email" name="email" type="email" placeholder="exemplo@email.com"
+            value="{{ email|default:'' }}">
+
+        <!-- Senha -->
+        <label for="password1">Senha</label>
+        <div class="password-container">
+            <input id="password1" name="password1" type="password" placeholder="Senha">
+            <img class="toggle-password" src="{% static 'assets/view.png' %}" id="togglePassword1" alt="Mostrar senha">
+        </div>
+
+        <!-- Confirmar Senha -->
+        <label for="password2">Confirmar senha</label>
+        <div class="password-container">
+            <input id="password2" name="password2" type="password" placeholder="Confirme sua senha">
+            <img class="toggle-password" src="{% static 'assets/view.png' %}" id="togglePassword2" alt="Mostrar senha">
+        </div>
+        
+        <div class="buttons">
+            <button type="submit" class="login-button">Cadastrar</button>
+            <p class="support">Já tem conta? <a href="{% url 'login' %}">Entrar</a></p>
+        </div>
+    </form>
+
+{% endblock %}

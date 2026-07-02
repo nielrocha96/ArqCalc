@@ -1,0 +1,70 @@
+<!-- # EDITADO - ABRIL/2
+-->
+{% load static %}
+{% load config_table %}
+{% get_table_vars as cfg_table %}
+<div
+	class="tab-content"
+	id="tab-dados">
+	<div class="form-row">
+		
+		{# ___________NOME DO PROJETO_______________ #}
+        {% include 'components/form_fields/inputs.html' with id_input='project_name' title='Nome do Projeto 1' name_input='project_name' input_placeholder='Projeto 0001' input_type='text' value_input=dados.project_name %}
+		
+		{# ___________CLIENTE_______________ #}
+        {% include 'components/form_fields/inputs.html' with id_input='customer_name' title='Cliente' name_input='customer_name' input_placeholder='Nome do Cliente' input_type='text' value_input=dados.customer_name %}
+		
+		{# ___________RESPONSÁVEL_______________ #}
+        {% include 'components/form_fields/inputs.html' with id_input='responsavel' title='Responsável' name_input='responsavel' input_placeholder='Responsável pelo Cliente' input_type='text' value_input=dados.account_name %}
+		
+		{# ___________DATA DE INÍCIO_______________ #}
+        {% include 'components/form_fields/inputs.html' with id_input='start_date' title='Início do Projeto' name_input='start_date' value_input=dados.start_date|date:'Y-m-d' input_placeholder='' input_type='date' %}
+		
+        <div class="container_form_group">    
+
+			{# ___________DATA DE FIM_______________ #}
+            {% include 'components/form_fields/inputs.html' with id_input='end_date' title='Fim do Projeto' name_input='end_date' input_placeholder='' input_type='date' value_input=dados.end_date|date:'Y-m-d' %}
+			
+			{# ___________STATUS DO PROJETO_______________ #}
+			{% include 'components/form_fields/select_base.html' with label='Status do Projeto' title=dados.status|default:'Em andamento' id_input='status_input' name_input='status' value_input=dados.status|default:'Em andamento' list_content=tab_config.dados.lists.content.status list_config=cfg_table.dados.lists.content.status %}
+        </div>
+	</div>
+
+	<div class="form-row">
+		{# ___________CEP_______________ #}
+		{% include 'components/form_fields/inputs.html' with id_input='cep' title='CEP' name_input='cep' input_placeholder='00000-000' input_type='text' value_input=dados.cep|default:'' %}
+		
+		{# ___________LOGRADOURO_______________ #}
+        {% include 'components/form_fields/inputs.html' with id_input='street_number' title='Logradouro' name_input='street_number' input_placeholder='0001' input_type='text' value_input=dados.street|default:'' %}
+		
+		{# ___________COMPLEMENTO_______________ #}
+        {% include 'components/form_fields/inputs.html' with id_input='street_additional' title='Complemento' name_input='street_additional' input_placeholder='0001' input_type='text' value_input=dados.street_additional|default:'' %}
+		
+		{# ___________BAIRRO_______________ #}
+        {% include 'components/form_fields/inputs.html' with id_input='neighborhood' title='Bairro' name_input='neighborhood' input_placeholder='Bairro' input_type='text' value_input=dados.neighborhood|default:'' %}
+		
+		{# ___________CIDADE_______________ #}
+        {% include 'components/form_fields/inputs.html' with id_input='city' title='Cidade' name_input='city' input_placeholder='Cidade' input_type='text' value_input=dados.city|default:'' %}
+		
+		{# ___________ESTADO_______________ #}
+        {% include 'components/form_fields/inputs.html' with id_input='state' title='UF' name_input='state' input_placeholder='SP' input_type='text' value_input=dados.state|default:'' %}
+		
+		{# ___________PAÍS_______________ #}
+        {% include 'components/form_fields/inputs.html' with id_input='pais' title='País' name_input='pais' input_placeholder='Brasil' input_type='text' value_input=dados.country|default:'' %}
+		
+	</div>
+    
+	<div class="form-row">
+		{% include 'components/form_fields/inputs.html' with id_input='size' title='Tamanho do Projeto (m²)' name_input='size' input_placeholder='100.00' input_type='number' value_input=dados.size %}
+		
+		{# ___________TIPO DO PROJETO_______________ #}
+		{% include 'components/form_fields/select_base.html' with label='Tipo de Projeto' title='Residencial' id_input='project_type_input' name_input='project_type' value_input=dados.project_type|default:'Residencial' list_content=tab_config.dados.lists.content.project_type list_config=cfg_table.dados.lists.content.project_type arrow_drop_down='true' %}
+		
+		{# ___________CLASSIFICAÇÃO DO PROJETO_______________ #}
+		{% include 'components/form_fields/select_base.html' with label='Classificação' title='Novo' id_input='classification_input' name_input='classification' value_input=dados.classification_project|default:'Novo' list_content=tab_config.dados.lists.content.classification list_config=cfg_table.dados.lists.content.classification arrow_drop_down='true' %}
+		
+		{# ___________CATEGORIA_______________ #}
+		{% include 'components/form_fields/select_base.html' with label='Categoria' title='Selecione a Categoria' id_input='category_input' name_input='category' value_input=dados.category_project|default:'Residencial' list_content=tab_config.dados.lists.content.category list_config=cfg_table.dados.lists.content.category arrow_drop_down='true' %}
+	</div>
+	
+</div>
